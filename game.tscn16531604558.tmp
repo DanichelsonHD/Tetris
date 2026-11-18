@@ -1,0 +1,18 @@
+[gd_scene format=4 uid="uid://dj0vy8k22rape"]
+
+[ext_resource type="PackedScene" uid="uid://c4rsomq3qk2bn" path="res://tetrominoes/board.tscn" id="1_80nbo"]
+[ext_resource type="Script" uid="uid://brlrqv3jxrgmd" path="res://game.gd" id="1_feb5d"]
+[ext_resource type="PackedScene" uid="uid://40dyxmb4xdve" path="res://tetrominoes/tetromino.tscn" id="2_e2o6t"]
+
+[node name="Game" type="Node2D" unique_id=558704298]
+script = ExtResource("1_feb5d")
+
+[node name="Board" parent="." unique_id=1165720764 instance=ExtResource("1_80nbo")]
+position = Vector2(90, 210)
+tile_map_data = PackedByteArray("AAAIABMAAAAAAAAAAAAHABIAAAAAAAAAAAAHABMAAAAAAAAAAAAGABIAAAAAAAAAAAAJABEAAAAEAAEAAAAJABIAAAAEAAEAAAAJABMAAAAEAAEAAAAIABIAAAAEAAEAAAAJABAAAAAFAAAAAAAIABAAAAAFAAAAAAAIABEAAAAFAAAAAAAHABEAAAAFAAAAAAAAABMAAAACAAAAAAABABMAAAACAAAAAAACABMAAAACAAAAAAACABIAAAACAAAAAAAAABIAAAADAAAAAAABABIAAAADAAAAAAABABEAAAADAAAAAAAAABEAAAADAAAAAAAAABAAAAACAAEAAAABABAAAAACAAEAAAACABAAAAACAAEAAAACABEAAAACAAEAAAADABAAAAAAAAEAAAADABEAAAAAAAEAAAADABIAAAAAAAEAAAADABMAAAAAAAEAAAA=")
+occlusion_enabled = false
+rendering_quadrant_size = 30
+physics_quadrant_size = 30
+
+[node name="Tetromino" parent="Board" unique_id=1387009445 instance=ExtResource("2_e2o6t")]
+currentRotation = 3
