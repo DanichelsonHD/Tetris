@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://clcgguy84bna6" path="res://tetrominoes/tetromino.gd" id="1_64cjv"]
 [ext_resource type="Texture2D" uid="uid://df5au33nb6f5v" path="res://tetrominoes/sprites/pure.png" id="2_nw3ts"]
 [ext_resource type="Texture2D" uid="uid://cu5suuakk2mnv" path="res://tetrominoes/sprites/smooth.png" id="3_8v8xb"]
+[ext_resource type="Script" uid="uid://bonsln1pkhsju" path="res://tetrominoes/states/stateMachine.gd" id="4_8v8xb"]
+[ext_resource type="Script" uid="uid://bpeu7ywfys64u" path="res://tetrominoes/states/S.gd" id="5_iaufh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rdlth"]
 size = Vector2(28, 26)
@@ -2629,5 +2631,23 @@ frame = 3
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1317898025]
 libraries/ = SubResource("AnimationLibrary_nw3ts")
 autoplay = &"t_0"
+
+[node name="StateMachine" type="Node2D" parent="." unique_id=1463769305]
+script = ExtResource("4_8v8xb")
+
+[node name="S" type="Node2D" parent="StateMachine" unique_id=552064816]
+script = ExtResource("5_iaufh")
+
+[node name="Z" type="Node2D" parent="StateMachine" unique_id=1974161472]
+
+[node name="L" type="Node2D" parent="StateMachine" unique_id=1833667393]
+
+[node name="J" type="Node2D" parent="StateMachine" unique_id=478472658]
+
+[node name="I" type="Node2D" parent="StateMachine" unique_id=1781655276]
+
+[node name="O" type="Node2D" parent="StateMachine" unique_id=142081904]
+
+[node name="T" type="Node2D" parent="StateMachine" unique_id=1607739724]
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

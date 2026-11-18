@@ -3,6 +3,7 @@ class_name Tetromino extends Node2D
 const validRotations : Array[int] = [0, 1, 2, 3]
 const validTypes : Array[String] = ["T", "S", "Z", "J", "L", "I", "O"]
 const CELL : int = 30
+const MARGIN : int = 15
 
 @export var currentType : String
 @export var currentRotation : int = 0
@@ -12,31 +13,30 @@ const CELL : int = 30
 var lastRotation : int = 0
 var lastPosition : Vector2i = Vector2i(0, 0)
 
+@onready var StateMachine : StateMachine = $StateMachine
 @onready var animationPlayer : AnimationPlayer = $AnimationPlayer
 @onready var area2D : Area2D = $Area2D
-@onready var sprite1 = $"Area2D/TetrominoSquare-1/Sprite-1"
-@onready var sprite2 = $"Area2D/TetrominoSquare-2/Sprite-2"
-@onready var sprite3 = $"Area2D/TetrominoSquare-3/Sprite-3"
-@onready var sprite4 = $"Area2D/TetrominoSquare-4/Sprite-4"
+@onready var tetrominoes : Array[CollisionShape2D] = [
+	$"Area2D/TetrominoSquare-1", $"Area2D/TetrominoSquare-2", 
+	$"Area2D/TetrominoSquare-3", $"Area2D/TetrominoSquare-4"
+]
+
+func Initialize(_board: Board):
+	UpdateTexture()
+	StateMachine.Initialize(self, _board)
 
 
-func _ready():
-	updateTexture()
-
-
-func updateFrame(_type: String, _rotation: int) -> void:
-	if not isValid(_type, _rotation):
+func UpdateFrame(_type: String, _rotation: int) -> void:
+	if not IsValid(_type, _rotation):
 		return
 	
 	if _type == "O":
 		_rotation = 0
 		
 	animationPlayer.play(_type + "_" + str(_rotation))
-	currentRotation = _rotation
-	currentType = _type
 
 
-func updatePosition(x: int, y: int) -> void:
+func UpdatePosition(x: int, y: int) -> void:
 	lastPosition = currentPosition
 	
 	position.x = x * CELL
@@ -45,7 +45,7 @@ func updatePosition(x: int, y: int) -> void:
 	currentPosition = Vector2i(x, y)
 
 
-func rotateLeft() -> void:
+func RotateLeft() -> void:
 	lastRotation = currentRotation
 	
 	if currentRotation == 0:
@@ -53,10 +53,10 @@ func rotateLeft() -> void:
 	else:
 		currentRotation -= 1
 		
-	updateFrame(currentType, currentRotation)
+	UpdateFrame(currentType, currentRotation)
 
 
-func rotateRight() -> void:
+func RotateRight() -> void:
 	lastRotation = currentRotation
 		
 	if currentRotation == 3:
@@ -64,10 +64,10 @@ func rotateRight() -> void:
 	else:
 		currentRotation += 1
 		
-	updateFrame(currentType, currentRotation)
+	UpdateFrame(currentType, currentRotation)
 
 
-func rotate180() -> void:
+func Rotate180() -> void:
 	lastRotation = currentRotation
 	
 	if currentRotation > 1:
@@ -75,24 +75,31 @@ func rotate180() -> void:
 	elif currentRotation < 2:
 		currentRotation += 2
 	
-	updateFrame(currentType, currentRotation)
+	UpdateFrame(currentType, currentRotation)
 
 
-func isValid(_type: String, _rotation: int) -> bool:
+func IsValid(_type: String, _rotation: int) -> bool:
 	if _type in validTypes and _rotation in validRotations:
 		return true
 	return false
 
 
-func updateTexture() -> void:
-	sprite1.texture = currentTexture
-	sprite2.texture = currentTexture
-	sprite3.texture = currentTexture
-	sprite4.texture = currentTexture
+func GetTetrominoesLocation() -> Array[Vector2i]:
+	var array = []
+	for tetromino in tetrominoes:
+		array.append(Vector2i(
+			(tetromino.position.x - MARGIN) / CELL, # Subtraí por causa de margem e 
+			(tetromino.position.y - MARGIN) / CELL  # dividi pra virar posição de Vector2i
+		))
+	return array
+
+func UpdateTexture() -> void:
+	for tetromino in tetrominoes:
+		tetromino.get_child(0).texture = currentTexture
 
 
 func _on_area_2d_body_entered(body):
-	updateFrame(currentType, lastRotation)
-	updatePosition(lastPosition.x, lastPosition.y)
+	UpdateFrame(currentType, lastRotation)
+	UpdatePosition(lastPosition.x, lastPosition.y)
 	if body is Board:
-		body.drawTetromino(currentType, currentRotation, currentPosition)
+		body.DrawTetromino(currentType, currentRotation, currentPosition)
