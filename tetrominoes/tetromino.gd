@@ -1,11 +1,16 @@
 class_name Tetromino extends Node2D
 
+const validRotations : Array[int] = [0, 1, 2, 3]
+const validTypes : Array[String] = ["T", "S", "Z", "J", "L", "I", "O"]
+const CELL : int = 30
+
 @export var currentType : String
-static var validTypes : Array[String] = ["T", "S", "Z", "J", "L", "I", "O"]
 @export var currentRotation : int = 0
-var lastRotation : int = 0
-static var validRotations : Array[int] = [0, 1, 2, 3]
+@export var currentPosition : Vector2i
 @export var currentTexture : CompressedTexture2D
+
+var lastRotation : int = 0
+var lastPosition : Vector2i = Vector2i(0, 0)
 
 @onready var animationPlayer : AnimationPlayer = $AnimationPlayer
 @onready var area2D : Area2D = $Area2D
@@ -29,6 +34,15 @@ func updateFrame(_type: String, _rotation: int) -> void:
 	animationPlayer.play(_type + "_" + str(_rotation))
 	currentRotation = _rotation
 	currentType = _type
+
+
+func updatePosition(x: int, y: int) -> void:
+	lastPosition = currentPosition
+	
+	position.x = x * CELL
+	position.y = y * CELL
+	
+	currentPosition = Vector2i(x, y)
 
 
 func rotateLeft() -> void:
@@ -79,5 +93,6 @@ func updateTexture() -> void:
 
 func _on_area_2d_body_entered(body):
 	updateFrame(currentType, lastRotation)
+	updatePosition(lastPosition.x, lastPosition.y)
 	if body is Board:
-		body.drawTetromino(currentType, currentRotation)
+		body.drawTetromino(currentType, currentRotation, currentPosition)

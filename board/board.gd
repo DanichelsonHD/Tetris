@@ -5,5 +5,5 @@ func _ready():
 	pass
 
 
-func drawTetromino(_type: String, _rotation: int) -> void:
-	print(_type, _rotation)
+func drawTetromino(_type: String, _rotation: int, _position: Vector2i) -> void:
+	print(_type, _rotation, _position)

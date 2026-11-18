@@ -20,8 +20,8 @@ func _unhandled_input(event):
 	if event.is_action_pressed("rotateLeft"): tetromino.rotateLeft()
 	if event.is_action_pressed("rotateRight"): tetromino.rotateRight()
 	if event.is_action_pressed("rotate180"): tetromino.rotate180()
-	if event.is_action_pressed("hardDrop"):
-		sortTetromino()
+	if event.is_action_pressed("hardDrop"): sortTetromino()
+	if event.is_action_pressed("softDrop"): tetromino.updatePosition(tetromino.currentPosition.x, tetromino.currentPosition.y + 1)
 	pass
 
 func sortTetromino() -> void:
