@@ -27,32 +27,40 @@ func updateFrame(_type: String, _rotation: int) -> void:
 		_rotation = 0
 		
 	animationPlayer.play(_type + "_" + str(_rotation))
-	lastRotation = currentRotation
 	currentRotation = _rotation
 	currentType = _type
 
 
 func rotateLeft() -> void:
+	lastRotation = currentRotation
+	
 	if currentRotation == 0:
 		currentRotation = 3
 	else:
 		currentRotation -= 1
+		
 	updateFrame(currentType, currentRotation)
 
 
 func rotateRight() -> void:
+	lastRotation = currentRotation
+		
 	if currentRotation == 3:
 		currentRotation = 0
 	else:
 		currentRotation += 1
+		
 	updateFrame(currentType, currentRotation)
 
 
 func rotate180() -> void:
+	lastRotation = currentRotation
+	
 	if currentRotation > 1:
 		currentRotation -= 2
 	elif currentRotation < 2:
 		currentRotation += 2
+	
 	updateFrame(currentType, currentRotation)
 
 
