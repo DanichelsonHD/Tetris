@@ -12,6 +12,7 @@ const MARGIN : int = 15
 
 @onready var stateMachine : StateMachine = $StateMachine
 @onready var animationPlayer : AnimationPlayer = $AnimationPlayer
+@onready var kickCases = $KickCases
 @onready var area2D : Area2D = $Area2D
 @onready var tetrominoes : Array[CollisionShape2D] = [
 	$"Area2D/TetrominoSquare-1", $"Area2D/TetrominoSquare-2", 
@@ -25,6 +26,7 @@ var board : Board
 func Initialize(_board: Board):
 	UpdateTexture()
 	board = _board
+	kickCases.Initialize(self, _board)
 	stateMachine.Initialize(self, _board)
 
 
@@ -57,15 +59,15 @@ func MoveRight() -> void:
 		UpdatePosition(currentPosition.x + right.x, currentPosition.y)
 
 
-#func RotateLeft() -> void:
-	#lastRotation = currentRotation
-	#
-	#if currentRotation == 0:
-		#currentRotation = 3
-	#else:
-		#currentRotation -= 1
-		#
-	#UpdateFrame(currentType, currentRotation)
+func RotateLeft() -> void:
+	var testRotation : int
+	if currentRotation == 0:
+		testRotation = 3
+	else:
+		testRotation = currentRotation - 1
+	
+	if true: pass
+	UpdateFrame(currentType, currentRotation)
 
 #func RotateRight() -> void:
 	#lastRotation = currentRotation
@@ -93,6 +95,10 @@ func IsValid(_type: String, _rotation: int) -> bool:
 	return false
 
 
+func IsOnFloor() -> bool:
+	return not board.VerifyLocation(GetTetrominoesLocation(), Vector2i(0, 1))
+
+
 func GetTetrominoesLocation() -> Array[Vector2i]:
 	var array : Array[Vector2i] = []
 	for tetromino in tetrominoes:
@@ -102,6 +108,7 @@ func GetTetrominoesLocation() -> Array[Vector2i]:
 		)
 		array.append(localPosition + currentPosition)
 	return array
+
 
 func UpdateTexture() -> void:
 	for tetromino in tetrominoes:

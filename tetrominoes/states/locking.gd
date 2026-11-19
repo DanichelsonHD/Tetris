@@ -2,7 +2,6 @@ class_name Locking extends State
 
 var timer : float
 var timeModifier : float = 0.25
-var onFloor : bool
 
 func _ready() -> void:
 	pass
@@ -16,7 +15,7 @@ func Process(_delta: float) -> State:
 	return null
 
 func Physics(_delta: float) -> State:
-	if not onFloor:
+	if not tetromino.IsOnFloor():
 		return falling
 	return null
 
@@ -38,13 +37,8 @@ func HandleInput(_event: InputEvent) -> State:
 
 func Enter() -> void:
 	print("Entered Locking State")
-	onFloor = true
 	timer = 0
 
 
 func Exit() -> void:
-	onFloor = true
-
-
-func _on_area_2d_body_exited(body):
-	onFloor = false
+	pass

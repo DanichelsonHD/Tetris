@@ -10,7 +10,7 @@ occlusion_enabled = false
 physics_quadrant_size = 1
 script = ExtResource("2_lvf5w")
 
-[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1224928574]
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=2021895944]
 physics_interpolation_mode = 2
 tile_map_data = PackedByteArray("AAAAAP//AAAEAAIAAAABAP//AAAEAAIAAAACAP//AAAEAAIAAAADAP//AAAEAAIAAAAEAP//AAAEAAIAAAAFAP//AAAEAAIAAAAGAP//AAAEAAIAAAAHAP//AAAEAAIAAAAIAP//AAAEAAIAAAAJAP//AAAEAAIAAAA=")
 tile_set = ExtResource("1_yv18o")
