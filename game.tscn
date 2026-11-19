@@ -13,7 +13,6 @@ gradient = SubResource("Gradient_feb5d")
 
 [node name="Game" type="Node2D" unique_id=558704298]
 script = ExtResource("1_feb5d")
-metadata/_edit_horizontal_guides_ = [75.0]
 
 [node name="Board" parent="." unique_id=1165720764 instance=ExtResource("1_80nbo")]
 z_index = 6
@@ -34,7 +33,7 @@ texture = SubResource("GradientTexture1D_rdlth")
 
 [node name="Sprite2D2" type="Sprite2D" parent="." unique_id=33470177]
 z_index = 5
-position = Vector2(282.99994, 78.99997)
+position = Vector2(282, 67)
 scale = Vector2(2.6, 208.00002)
 texture = SubResource("GradientTexture1D_rdlth")
 
@@ -65,5 +64,5 @@ scale = Vector2(0.5, 0.5)
 
 [node name="Hold" parent="." unique_id=1242279248 instance=ExtResource("4_fc0e3")]
 z_index = 5
-position = Vector2(217.5, 75)
-scale = Vector2(0.5, 0.5)
+position = Vector2(210, 60)
+scale = Vector2(0.66, 0.66)

@@ -15,10 +15,36 @@ func _ready():
 
 
 func GameEnded() -> bool:
-	for index in range(3, 7):
+	for index in range(3, 6):
 		if LocationOccupied(Vector2i(index, 0)):
 			return true
 	return false
+
+
+func VerifyLines() -> void:
+	var clearedLines : Array[int] = []
+	
+	for line in range(0, 20):
+		var occupied : int = 0
+		for row in range(0, 10):
+			if LocationOccupied(Vector2i(row, line)):
+				occupied += 1
+		
+		if occupied == 10:
+			clearedLines.append(line)
+			for row in range(0, 10):
+				erase_cell(Vector2i(row, line))
+	MoveLinesDown(clearedLines)
+
+
+func MoveLinesDown(clearedLines : Array[int]) -> void:
+	for clearedLine in clearedLines:
+		for line in range(clearedLine, 0, -1):
+			for row in range(0, 10):
+				var currentSquare : Vector2i = Vector2i(row, line)
+				if LocationOccupied(currentSquare):
+					set_cell(currentSquare + Vector2i(0, 1), 0, get_cell_atlas_coords(currentSquare))
+					erase_cell(currentSquare)
 
 
 func DrawTetromino(_type: String, _positions: Array[Vector2i]) -> void:

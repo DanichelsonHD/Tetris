@@ -17,25 +17,26 @@ func _ready():
 	SortTetromino()
 	tetromino.pieceLocked.connect(SortTetromino)
 
-
 func _process(delta):
 	if board.GameEnded():
-		get_tree().reload_current_scene()
+		Reset()
 	for index in nextPieces.size():
-		NextSprite(nextPieces[index], index, 487.5)
+		NextSprite(nextPieces[index], index, 487.5, 7.5)
 
 func _physics_process(delta):
 	pass
 
-func NextSprite(_hold: Hold, _index: int, _position: float) -> void:
+func NextSprite(_hold: Hold, _index: int, _position: float, _margin: float) -> void:
 	var _type = currentBag[_index]
-	ChangeSprite(_hold, _type, _position)
+	ChangeSprite(_hold, _type, _position, _margin)
 
-func ChangeSprite(_hold: Hold, _type: String, _position: float) -> void:
+
+func ChangeSprite(_hold: Hold, _type: String, _position: float, _margin: float) -> void:
 	_hold.UpdateFrame(_type, 0)
 	if _type == "I" or _type == "O":
-		_hold.position.x = _position - 7.5
+		_hold.position.x = _position - _margin
 	else: _hold.position.x = _position
+
 
 func _unhandled_input(event):
 	#if event.is_action_pressed("RotateLeft"): tetromino.RotateLeft()
@@ -43,18 +44,32 @@ func _unhandled_input(event):
 	#if event.is_action_pressed("Rotate180"): tetromino.Rotate180()
 	#if event.is_action_pressed("hardDrop"): SortTetromino()
 	#if event.is_action_pressed("softDrop"): tetromino.UpdatePosition(tetromino.currentPosition.x, tetromino.currentPosition.y + 1)
-	if event.is_action_pressed("holdPiece"): 
-		var _type : String = tetromino.currentType
-		if hold.type == null:
-			tetromino.currentType = currentBag.pop_front()
-			tetromino.UpdateFrame(tetromino.currentType, 0)
-		else:
-			tetromino.currentType = hold.type
-			tetromino.UpdateFrame(hold.type, 0)
-		tetromino.UpdatePosition(3, 0)
-		ChangeSprite(hold, _type, 217.5)
-		
+	if event.is_action_pressed("holdPiece"): SwapHold()
+	if event.is_action_pressed("resetKey"): Reset()
 	pass
+
+
+func Reset() -> void:
+	get_tree().reload_current_scene()
+
+
+func SwapHold() -> void:
+	if not tetromino.hold:
+		var _type : String = tetromino.currentType
+		if hold.type.is_empty():
+			hold.type = _type
+			tetromino.currentType = currentBag[0]
+			tetromino.UpdateFrame(tetromino.currentType, 0)
+			currentBag.pop_front()
+		else:
+			var _holdType : String = hold.type
+			hold.type = _type
+			tetromino.currentType = _holdType
+			tetromino.UpdateFrame(_holdType, 0)
+		tetromino.UpdatePosition(3, 0)
+		ChangeSprite(hold, hold.type, 210, 10)
+		tetromino.hold = true
+
 
 func SortTetromino() -> void:
 	if nextBag.is_empty():
@@ -64,6 +79,7 @@ func SortTetromino() -> void:
 	currentBag.append(nextBag.pop_back())
 	tetromino.currentType = sortedPiece
 	tetromino.UpdateFrame(sortedPiece, 0)
+
 
 func NewBag(tempBag: Array[String]) -> Array[String]:
 	tempBag = tetromino.sprite.validTypes.duplicate()

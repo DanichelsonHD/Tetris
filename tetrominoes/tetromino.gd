@@ -12,10 +12,12 @@ class_name Tetromino extends Node2D
 signal pieceLocked
 
 var board : Board
+var hold : bool
 
 func Initialize(_board: Board):
 	UpdateTexture()
 	board = _board
+	hold = false
 	kickCases.Initialize(self, _board)
 	stateMachine.Initialize(self, _board)
 

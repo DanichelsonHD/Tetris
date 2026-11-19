@@ -11,4 +11,5 @@ func Enter() -> void:
 	tetromino.UpdatePosition(3, -3)
 
 func Exit() -> void:
-	pass
+	tetromino.hold = false
+	board.VerifyLines()
