@@ -20,8 +20,11 @@ const MARGIN : int = 15
 
 signal pieceLocked
 
+var board : Board
+
 func Initialize(_board: Board):
 	UpdateTexture()
+	board = _board
 	stateMachine.Initialize(self, _board)
 
 
@@ -42,6 +45,18 @@ func UpdatePosition(x: int, y: int) -> void:
 	currentPosition = Vector2i(x, y)
 
 
+func MoveLeft() -> void:
+	var left : Vector2i = Vector2i(-1, 0)
+	if board.VerifyLocation(GetTetrominoesLocation(), left):
+		currentPosition += left
+
+
+func MoveRight() -> void:
+	var right : Vector2i = Vector2i(1, 0)
+	if board.VerifyLocation(GetTetrominoesLocation(), right):
+		currentPosition += right
+
+
 #func RotateLeft() -> void:
 	#lastRotation = currentRotation
 	#
@@ -51,7 +66,6 @@ func UpdatePosition(x: int, y: int) -> void:
 		#currentRotation -= 1
 		#
 	#UpdateFrame(currentType, currentRotation)
-
 
 #func RotateRight() -> void:
 	#lastRotation = currentRotation
@@ -63,7 +77,6 @@ func UpdatePosition(x: int, y: int) -> void:
 		#
 	#UpdateFrame(currentType, currentRotation)
 
-
 #func Rotate180() -> void:
 	#lastRotation = currentRotation
 	#
@@ -73,7 +86,6 @@ func UpdatePosition(x: int, y: int) -> void:
 		#currentRotation += 2
 	#
 	#UpdateFrame(currentType, currentRotation)
-
 
 func IsValid(_type: String, _rotation: int) -> bool:
 	if _type in validTypes and _rotation in validRotations:

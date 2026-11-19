@@ -20,7 +20,8 @@ func Physics(_delta: float) -> State:
 	return null
 
 func HandleInput(_event: InputEvent) -> State:
-	
+	if _event.is_action_pressed("moveLeft"): tetromino.MoveLeft()
+	if _event.is_action_pressed("moveRight"): tetromino.MoveRight()
 	return null
 
 func Enter() -> void:

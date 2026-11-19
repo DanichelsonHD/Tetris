@@ -24,6 +24,12 @@ func HandleInput(_event: InputEvent) -> State:
 		timer -= 1
 	if _event.is_action_pressed("rotate180"):
 		timer -= 1
+	if _event.is_action_pressed("moveLeft"): 
+		tetromino.MoveLeft()
+		timer -= 1
+	if _event.is_action_pressed("moveRight"): 
+		tetromino.MoveRight()
+		timer -= 1
 	return null
 
 func Enter() -> void:
