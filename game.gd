@@ -39,9 +39,9 @@ func ChangeSprite(_hold: Hold, _type: String, _position: float, _margin: float) 
 
 
 func _unhandled_input(event):
-	#if event.is_action_pressed("RotateLeft"): tetromino.RotateLeft()
-	#if event.is_action_pressed("RotateRight"): tetromino.RotateRight()
-	#if event.is_action_pressed("Rotate180"): tetromino.Rotate180()
+	if event.is_action_pressed("rotateLeft"): tetromino.RotateLeft()
+	#if event.is_action_pressed("rotateRight"): tetromino.RotateRight()
+	#if event.is_action_pressed("rotate180"): tetromino.Rotate180()
 	#if event.is_action_pressed("hardDrop"): SortTetromino()
 	#if event.is_action_pressed("softDrop"): tetromino.UpdatePosition(tetromino.currentPosition.x, tetromino.currentPosition.y + 1)
 	if event.is_action_pressed("holdPiece"): SwapHold()

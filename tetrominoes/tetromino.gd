@@ -52,8 +52,14 @@ func RotateLeft() -> void:
 	else:
 		testRotation = currentRotation - 1
 	
-	if true: pass
-	UpdateFrame(currentType, currentRotation)
+	var kickTable : Array = kickCases.GetKickCase(currentRotation, testRotation)
+	print(kickTable)
+	var kickCase : Vector2i = kickCases.VerifyKickCase(kickTable)
+	print(kickCase)
+	
+	if kickCase != Vector2i(-5, -5) and kickTable != [[0, 0]]:
+		currentRotation = testRotation
+		UpdateFrame(currentType, currentRotation)
 
 #func RotateRight() -> void:
 	#lastRotation = currentRotation
