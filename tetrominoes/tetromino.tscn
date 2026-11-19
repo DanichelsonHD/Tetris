@@ -2546,7 +2546,7 @@ currentTexture = ExtResource("2_nw3ts")
 [node name="Area2D" type="Area2D" parent="." unique_id=623923420]
 
 [node name="TetrominoSquare-1" type="CollisionShape2D" parent="Area2D" unique_id=1026556252]
-position = Vector2(75, 46)
+position = Vector2(15, 46)
 shape = SubResource("RectangleShape2D_rdlth")
 
 [node name="Sprite-1" type="Sprite2D" parent="Area2D/TetrominoSquare-1" unique_id=110344037]
@@ -2554,7 +2554,7 @@ position = Vector2(0, -1)
 texture = ExtResource("2_nw3ts")
 hframes = 8
 vframes = 3
-frame = 10
+frame = 6
 
 [node name="TetrominoSquare-2" type="CollisionShape2D" parent="Area2D" unique_id=2144791568]
 position = Vector2(45, 46)
@@ -2565,10 +2565,10 @@ position = Vector2(0, -1)
 texture = ExtResource("2_nw3ts")
 hframes = 8
 vframes = 3
-frame = 10
+frame = 6
 
 [node name="TetrominoSquare-3" type="CollisionShape2D" parent="Area2D" unique_id=1349344508]
-position = Vector2(15, 16)
+position = Vector2(75, 16)
 shape = SubResource("RectangleShape2D_rdlth")
 
 [node name="Sprite-3" type="Sprite2D" parent="Area2D/TetrominoSquare-3" unique_id=965146009]
@@ -2576,10 +2576,10 @@ position = Vector2(0, -1)
 texture = ExtResource("2_nw3ts")
 hframes = 8
 vframes = 3
-frame = 10
+frame = 6
 
 [node name="TetrominoSquare-4" type="CollisionShape2D" parent="Area2D" unique_id=2128685140]
-position = Vector2(15, 46)
+position = Vector2(45, 16)
 shape = SubResource("RectangleShape2D_rdlth")
 
 [node name="Sprite-4" type="Sprite2D" parent="Area2D/TetrominoSquare-4" unique_id=128885942]
@@ -2587,7 +2587,7 @@ position = Vector2(0, -1)
 texture = ExtResource("2_nw3ts")
 hframes = 8
 vframes = 3
-frame = 10
+frame = 6
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1317898025]
 libraries/ = SubResource("AnimationLibrary_nw3ts")

@@ -18,19 +18,21 @@ const MARGIN : int = 15
 	$"Area2D/TetrominoSquare-3", $"Area2D/TetrominoSquare-4"
 ]
 
+signal pieceLocked
+
 func Initialize(_board: Board):
 	UpdateTexture()
 	stateMachine.Initialize(self, _board)
 
 
-#func UpdateFrame(_type: String, _rotation: int) -> void:
-	#if not IsValid(_type, _rotation):
-		#return
-	#
-	#if _type == "O":
-		#_rotation = 0
-		#
-	#animationPlayer.play(_type + "_" + str(_rotation))
+func UpdateFrame(_type: String, _rotation: int) -> void:
+	if not IsValid(_type, _rotation):
+		return
+	
+	if _type == "O":
+		_rotation = 0
+		
+	animationPlayer.play(_type + "_" + str(_rotation))
 
 
 func UpdatePosition(x: int, y: int) -> void:
@@ -95,9 +97,9 @@ func UpdateTexture() -> void:
 
 
 func _on_area_2d_body_entered(body):
-	#UpdateFrame(currentType, lastRotation)
 	if body is Board:
 		stateMachine.ChangeState(stateMachine.get_child(1))
 		body.DrawTetromino(currentType, GetTetrominoesLocation())
+		pieceLocked.emit()
 		UpdatePosition(3, 0)
 		stateMachine.ChangeState(stateMachine.get_child(0))

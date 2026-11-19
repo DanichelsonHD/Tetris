@@ -6,7 +6,7 @@ func _ready() -> void:
 	pass
 
 func Process(_delta: float) -> State:
-	if timer < 0.1:
+	if timer < 0.075:
 		timer += _delta
 	else:
 		tetromino.UpdatePosition(tetromino.currentPosition.x, tetromino.currentPosition.y + 1)

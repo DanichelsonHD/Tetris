@@ -14,10 +14,17 @@ func _ready():
 	pass
 
 
+func GameEnded() -> bool:
+	for index in range(3, 7):
+		if LocationOccupied(Vector2i(index, 0)):
+			return true
+	return false
+
+
 func DrawTetromino(_type: String, _positions: Array[Vector2i]) -> void:
 	for _position in _positions:
 		print(_position)
-		set_cell(_position, 0, Vector2i(0, 0))
+		set_cell(_position, 0, colors[_type])
 
 
 func LocationOccupied(_position: Vector2i) -> bool:

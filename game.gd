@@ -9,10 +9,12 @@ func _ready():
 	tetromino.Initialize(board)
 	BOARD.get_source(0).texture = tetromino.currentTexture
 	SortTetromino()
+	tetromino.pieceLocked.connect(SortTetromino)
 
 
 func _process(delta):
-	pass
+	if board.GameEnded():
+		get_tree().reload_current_scene()
 
 func _physics_process(delta):
 	pass
@@ -31,13 +33,9 @@ func SortTetromino() -> void:
 	
 	var sortedPiece = currentBag.pick_random()
 	currentBag.erase(sortedPiece)
-	#tetromino.UpdateFrame(sortedPiece, 0)
+	tetromino.currentType = sortedPiece
+	tetromino.UpdateFrame(sortedPiece, 0)
 
 func NewBag() -> void:
 	currentBag = tetromino.validTypes.duplicate()
 	currentBag.shuffle()
-
-
-func _on_area_2d_body_entered(body):
-	print(body)
-	get_tree().reload_current_scene()
