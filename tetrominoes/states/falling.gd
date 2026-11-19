@@ -9,7 +9,7 @@ func _ready() -> void:
 func Process(_delta: float) -> State:
 	if timer < 0.075:
 		timer += _delta
-	else:
+	elif board.VerifyLocation(tetromino.GetTetrominoesLocation(), Vector2i(0, 1)):
 		tetromino.UpdatePosition(tetromino.currentPosition.x, tetromino.currentPosition.y + 1)
 		timer = 0
 	return null

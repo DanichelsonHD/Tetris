@@ -1,6 +1,7 @@
 class_name Locking extends State
 
 var timer : float
+var timeModifier : float = 0.25
 var onFloor : bool
 
 func _ready() -> void:
@@ -9,6 +10,8 @@ func _ready() -> void:
 func Process(_delta: float) -> State:
 	if timer > 2:
 		return locked
+	if timer < 0:
+		timer = 0
 	timer += _delta
 	return null
 
@@ -19,17 +22,18 @@ func Physics(_delta: float) -> State:
 
 func HandleInput(_event: InputEvent) -> State:
 	if _event.is_action_pressed("rotateLeft"):
-		timer -= 1
+		timer -= timeModifier
 	if _event.is_action_pressed("rotateRight"):
-		timer -= 1
+		timer -= timeModifier
 	if _event.is_action_pressed("rotate180"):
-		timer -= 1
+		timer -= timeModifier
+		
 	if _event.is_action_pressed("moveLeft"): 
 		tetromino.MoveLeft()
-		timer -= 1
+		timer -= timeModifier
 	if _event.is_action_pressed("moveRight"): 
 		tetromino.MoveRight()
-		timer -= 1
+		timer -= timeModifier
 	return null
 
 func Enter() -> void:

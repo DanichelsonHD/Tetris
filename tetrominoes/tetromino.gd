@@ -48,13 +48,13 @@ func UpdatePosition(x: int, y: int) -> void:
 func MoveLeft() -> void:
 	var left : Vector2i = Vector2i(-1, 0)
 	if board.VerifyLocation(GetTetrominoesLocation(), left):
-		currentPosition += left
+		UpdatePosition(currentPosition.x + left.x, currentPosition.y)
 
 
 func MoveRight() -> void:
 	var right : Vector2i = Vector2i(1, 0)
 	if board.VerifyLocation(GetTetrominoesLocation(), right):
-		currentPosition += right
+		UpdatePosition(currentPosition.x + right.x, currentPosition.y)
 
 
 #func RotateLeft() -> void:
