@@ -99,7 +99,3 @@ func UpdateTexture() -> void:
 func _on_area_2d_body_entered(body):
 	if body is Board:
 		stateMachine.ChangeState(stateMachine.get_child(1))
-		body.DrawTetromino(currentType, GetTetrominoesLocation())
-		pieceLocked.emit()
-		UpdatePosition(3, 0)
-		stateMachine.ChangeState(stateMachine.get_child(0))

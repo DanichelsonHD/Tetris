@@ -9,6 +9,11 @@ class_name State extends Node2D
 @onready var tetromino_3 = $"../../Area2D/TetrominoSquare-3"
 @onready var tetromino_4 = $"../../Area2D/TetrominoSquare-4"
 
+@onready var falling = $StateMachine/Falling
+@onready var locking = $StateMachine/Locking
+@onready var locked = $StateMachine/Locked
+
+
 const KickTable : Array[Array] = [
 	[[-1,  0], [-1, -1], [ 0,  2], [-1,  2]], # 0->1 ou 2->1
 	[[ 1,  0], [ 1,  1], [ 0, -2], [ 1, -2]], # 1->0 ou 1->2
