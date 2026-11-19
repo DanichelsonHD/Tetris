@@ -36,3 +36,8 @@ func SortTetromino() -> void:
 func NewBag() -> void:
 	currentBag = tetromino.validTypes.duplicate()
 	currentBag.shuffle()
+
+
+func _on_area_2d_body_entered(body):
+	print(body)
+	get_tree().reload_current_scene()

@@ -82,10 +82,11 @@ func IsValid(_type: String, _rotation: int) -> bool:
 func GetTetrominoesLocation() -> Array[Vector2i]:
 	var array : Array[Vector2i] = []
 	for tetromino in tetrominoes:
-		array.append(Vector2i(
-			(tetromino.position.x - MARGIN) / CELL, # Subtraí por causa de margem e 
-			(tetromino.position.y - MARGIN) / CELL  # dividi pra virar posição de Vector2i
-		))
+		var localPosition = Vector2i(
+			roundi((tetromino.position.x - MARGIN) / CELL), # Subtraí por causa de margem e 
+			roundi((tetromino.position.y - MARGIN) / CELL)  # dividi pra virar posição de Vector2i
+		)
+		array.append(localPosition + currentPosition)
 	return array
 
 func UpdateTexture() -> void:

@@ -1,6 +1,6 @@
 [gd_resource type="TileSet" format=3 uid="uid://cgq83ky4undj"]
 
-[ext_resource type="Texture2D" uid="uid://df5au33nb6f5v" path="res://tetrominoes/sprites/pure.png" id="1_n1iea"]
+[ext_resource type="Texture2D" uid="uid://ccxoh2oquxdj2" path="res://tetrominoes/sprites/minoes.png" id="1_n1iea"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lvf5w"]
 texture = ExtResource("1_n1iea")
@@ -53,5 +53,6 @@ texture_region_size = Vector2i(30, 30)
 
 [resource]
 tile_size = Vector2i(30, 30)
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 3
+physics_layer_0/collision_mask = 3
 sources/0 = SubResource("TileSetAtlasSource_lvf5w")

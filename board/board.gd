@@ -1,6 +1,14 @@
 class_name Board extends TileMapLayer
 
-const validTypes : Array[String] = ["T", "S", "Z", "J", "L", "I", "O"]
+const colors : Dictionary[String, Vector2i] = {
+	"T": Vector2i(5, 1), 
+	"S": Vector2i(6, 0), 
+	"Z": Vector2i(0, 0), 
+	"J": Vector2i(2, 1), 
+	"L": Vector2i(2, 0), 
+	"I": Vector2i(0, 1), 
+	"O": Vector2i(3, 0)
+}
 
 func _ready():
 	pass

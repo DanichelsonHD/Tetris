@@ -4,6 +4,9 @@
 [ext_resource type="Script" uid="uid://brlrqv3jxrgmd" path="res://game.gd" id="1_feb5d"]
 [ext_resource type="PackedScene" uid="uid://40dyxmb4xdve" path="res://tetrominoes/tetromino.tscn" id="2_e2o6t"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rdlth"]
+size = Vector2(118, 28)
+
 [node name="Game" type="Node2D" unique_id=558704298]
 script = ExtResource("1_feb5d")
 
@@ -18,3 +21,13 @@ physics_quadrant_size = 30
 position = Vector2(90, 0)
 currentType = "I"
 currentPosition = Vector2i(3, 0)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=189228169]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1615298207]
+position = Vector2(240, 225)
+shape = SubResource("RectangleShape2D_rdlth")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
