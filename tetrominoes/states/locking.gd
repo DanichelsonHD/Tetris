@@ -20,11 +20,14 @@ func Physics(_delta: float) -> State:
 	return null
 
 func HandleInput(_event: InputEvent) -> State:
-	if _event.is_action_pressed("rotateLeft"):
+	if _event.is_action_pressed("rotateLeft"): 
+		tetromino.RotateLeft()
 		timer -= timeModifier
-	if _event.is_action_pressed("rotateRight"):
+	if _event.is_action_pressed("rotateRight"): 
+		tetromino.RotateRight()
 		timer -= timeModifier
-	if _event.is_action_pressed("rotate180"):
+	if _event.is_action_pressed("rotate180"): 
+		tetromino.Rotate180()
 		timer -= timeModifier
 		
 	if _event.is_action_pressed("moveLeft"): 

@@ -52,34 +52,49 @@ func RotateLeft() -> void:
 	else:
 		testRotation = currentRotation - 1
 	
-	var kickTable : Array = kickCases.GetKickCase(currentRotation, testRotation)
-	print(kickTable)
-	var kickCase : Vector2i = kickCases.VerifyKickCase(kickTable)
-	print(kickCase)
+	ApplyRotation(testRotation)
+
+func RotateRight() -> void:
+	var testRotation : int
+	if currentRotation == 3:
+		testRotation = 0
+	else:
+		testRotation = currentRotation + 1
+		
+	ApplyRotation(testRotation)
+
+func Rotate180() -> void:
+	var testRotation : int
+	if currentRotation > 1:
+		testRotation = currentRotation - 2
+	elif currentRotation < 2:
+		testRotation = currentRotation + 2
 	
-	if kickCase != Vector2i(-5, -5) and kickTable != [[0, 0]]:
+	ApplyRotation(testRotation)
+
+
+func ApplyRotation(testRotation: int) -> void:
+	var kickTable : Array = kickCases.GetKickCase(currentRotation, testRotation)
+	
+	if currentType == "O":
+		testRotation = 0
+	
+	var desiredRotation : Array = sprite.rotations.rotations[currentType + "_" + str(testRotation)]
+	var vectorRotation : Array[Vector2i] = []
+	
+	for index in range(1, 5):
+		var tetromino = Vector2i(desiredRotation[index][0], desiredRotation[index][1])
+		vectorRotation.append(tetromino + currentPosition)
+	
+	var kickCase : Vector2i = kickCases.VerifyKickCase(kickTable, vectorRotation)
+	
+	if kickCase != Vector2i(-5, -5) or kickTable != [[0, 0]]:
 		currentRotation = testRotation
+		currentPosition += kickCase
+		
 		UpdateFrame(currentType, currentRotation)
+		UpdatePosition(currentPosition.x, currentPosition.y)
 
-#func RotateRight() -> void:
-	#lastRotation = currentRotation
-		#
-	#if currentRotation == 3:
-		#currentRotation = 0
-	#else:
-		#currentRotation += 1
-		#
-	#UpdateFrame(currentType, currentRotation)
-
-#func Rotate180() -> void:
-	#lastRotation = currentRotation
-	#
-	#if currentRotation > 1:
-		#currentRotation -= 2
-	#elif currentRotation < 2:
-		#currentRotation += 2
-	#
-	#UpdateFrame(currentType, currentRotation)
 
 func IsValid(_type: String, _rotation: int) -> bool:
 	return sprite.IsValid(_type, _rotation)

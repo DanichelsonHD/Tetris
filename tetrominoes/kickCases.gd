@@ -53,10 +53,10 @@ func GetIKickCase(current: int, next: int) -> Array[Array]:
 	return [[0, 0]]
 
 
-func VerifyKickCase(kickTable: Array) -> Vector2i:
+func VerifyKickCase(kickTable: Array, desiredRotation: Array[Vector2i]) -> Vector2i:
 	for kick in [[0,0]] + kickTable:
 		var vectorKick = Vector2i(kick[0], kick[1])
-		if board.VerifyLocation(tetromino.GetTetrominoesLocation(), vectorKick):
+		if board.VerifyLocation(desiredRotation, vectorKick):
 			return vectorKick
 	return Vector2i(-5, -5)
 
