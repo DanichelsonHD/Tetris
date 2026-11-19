@@ -2605,4 +2605,5 @@ script = ExtResource("6_y6pm0")
 [node name="Locked" type="Node2D" parent="StateMachine" unique_id=1833667393]
 script = ExtResource("7_kfs4g")
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Area2D" to="StateMachine/Falling" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="StateMachine/Locking" method="_on_area_2d_body_exited"]

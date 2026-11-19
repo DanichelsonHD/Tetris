@@ -9,9 +9,9 @@ class_name State extends Node2D
 @onready var tetromino_3 = $"../../Area2D/TetrominoSquare-3"
 @onready var tetromino_4 = $"../../Area2D/TetrominoSquare-4"
 
-@onready var falling = $StateMachine/Falling
-@onready var locking = $StateMachine/Locking
-@onready var locked = $StateMachine/Locked
+@onready var falling = $"../Falling"
+@onready var locking = $"../Locking"
+@onready var locked = $"../Locked"
 
 
 const KickTable : Array[Array] = [

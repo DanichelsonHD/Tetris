@@ -23,7 +23,6 @@ func GameEnded() -> bool:
 
 func DrawTetromino(_type: String, _positions: Array[Vector2i]) -> void:
 	for _position in _positions:
-		print(_position)
 		set_cell(_position, 0, colors[_type])
 
 

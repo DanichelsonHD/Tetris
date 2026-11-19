@@ -22,11 +22,11 @@ func Initialize(_tetromino: Tetromino, _board: Board) -> void:
 	
 	for child in get_children():
 		if child is State:
+			child.tetromino = _tetromino
+			child.board = _board
 			states.append(child)
 	
 	if states.size() > 0:
-		states[0].tetromino = _tetromino
-		states[0].board = _board
 		ChangeState(states[0])
 		process_mode = Node.PROCESS_MODE_INHERIT
 
