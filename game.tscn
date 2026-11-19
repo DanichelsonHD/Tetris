@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://c4rsomq3qk2bn" path="res://board/board.tscn" id="1_80nbo"]
 [ext_resource type="Script" uid="uid://brlrqv3jxrgmd" path="res://game.gd" id="1_feb5d"]
 [ext_resource type="PackedScene" uid="uid://40dyxmb4xdve" path="res://tetrominoes/tetromino.tscn" id="2_e2o6t"]
+[ext_resource type="PackedScene" uid="uid://c4omj4lnvgi22" path="res://tetrominoes/hold.tscn" id="4_fc0e3"]
 
 [sub_resource type="Gradient" id="Gradient_feb5d"]
 colors = PackedColorArray(0, 0.105882354, 0, 1, 0.12686801, 0.012153827, 0.13416663, 1)
@@ -12,24 +13,57 @@ gradient = SubResource("Gradient_feb5d")
 
 [node name="Game" type="Node2D" unique_id=558704298]
 script = ExtResource("1_feb5d")
+metadata/_edit_horizontal_guides_ = [75.0]
 
 [node name="Board" parent="." unique_id=1165720764 instance=ExtResource("1_80nbo")]
+z_index = 6
+z_as_relative = false
 position = Vector2(90, 210)
 
 [node name="Tetromino" parent="Board" unique_id=1387009445 instance=ExtResource("2_e2o6t")]
-z_index = -1
+z_as_relative = false
 position = Vector2(90, -90)
 currentType = "I"
 currentPosition = Vector2i(3, -3)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=768815235]
 z_index = -2
-position = Vector2(300, 450)
+position = Vector2(284, 491.00003)
 scale = Vector2(2.6, 924)
 texture = SubResource("GradientTexture1D_rdlth")
 
 [node name="Sprite2D2" type="Sprite2D" parent="." unique_id=33470177]
-z_index = -1
-position = Vector2(299.99994, 78.99997)
+z_index = 5
+position = Vector2(282.99994, 78.99997)
 scale = Vector2(2.6, 208.00002)
 texture = SubResource("GradientTexture1D_rdlth")
+
+[node name="Next_1" parent="." unique_id=1670892946 instance=ExtResource("4_fc0e3")]
+z_index = 6
+position = Vector2(487.5, 255)
+scale = Vector2(0.5, 0.5)
+
+[node name="Next_2" parent="." unique_id=1245641898 instance=ExtResource("4_fc0e3")]
+position = Vector2(487.5, 315)
+scale = Vector2(0.5, 0.5)
+
+[node name="Next_3" parent="." unique_id=191968714 instance=ExtResource("4_fc0e3")]
+position = Vector2(487.5, 375)
+scale = Vector2(0.5, 0.5)
+
+[node name="Next_4" parent="." unique_id=42802861 instance=ExtResource("4_fc0e3")]
+position = Vector2(487.5, 435)
+scale = Vector2(0.5, 0.5)
+
+[node name="Next_5" parent="." unique_id=2038115992 instance=ExtResource("4_fc0e3")]
+position = Vector2(487.5, 495)
+scale = Vector2(0.5, 0.5)
+
+[node name="Next_6" parent="." unique_id=1052217923 instance=ExtResource("4_fc0e3")]
+position = Vector2(487.5, 555)
+scale = Vector2(0.5, 0.5)
+
+[node name="Hold" parent="." unique_id=1242279248 instance=ExtResource("4_fc0e3")]
+z_index = 5
+position = Vector2(217.5, 75)
+scale = Vector2(0.5, 0.5)

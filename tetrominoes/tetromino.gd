@@ -1,9 +1,5 @@
 class_name Tetromino extends Node2D
 
-const validRotations : Array[int] = [0, 1, 2, 3]
-const validTypes : Array[String] = ["T", "S", "Z", "J", "L", "I", "O"]
-const CELL : int = 30
-
 @export var currentType : String
 @export var currentRotation : int = 0
 @export var currentPosition : Vector2i
@@ -11,11 +7,7 @@ const CELL : int = 30
 
 @onready var stateMachine : StateMachine = $StateMachine
 @onready var kickCases = $KickCases
-@onready var rotations = $Rotations
-@onready var tetrominoes : Array[Sprite2D] = [
-	$"Rotations/Sprite-1", $"Rotations/Sprite-2", 
-	$"Rotations/Sprite-3", $"Rotations/Sprite-4"
-]
+@onready var sprite = $Sprite
 
 signal pieceLocked
 
@@ -29,24 +21,12 @@ func Initialize(_board: Board):
 
 
 func UpdateFrame(_type: String, _rotation: int) -> void:
-	if not IsValid(_type, _rotation):
-		return
-	
-	if _type == "O":
-		_rotation = 0
-	
-	for mino in tetrominoes:
-		var animation : Array = rotations.rotations[_type + "_" + str(_rotation)]
-		mino.position = Vector2(
-			animation[mino.z_index][0] * 30,
-			animation[mino.z_index][1] * 30
-		)
-		mino.frame = animation[0][0]
+	sprite.UpdateFrame(_type, _rotation)
 
 
 func UpdatePosition(x: int, y: int) -> void:
-	position.x = x * CELL
-	position.y = y * CELL
+	position.x = x * sprite.CELL
+	position.y = y * sprite.CELL
 	
 	currentPosition = Vector2i(x, y)
 
@@ -94,9 +74,7 @@ func RotateLeft() -> void:
 	#UpdateFrame(currentType, currentRotation)
 
 func IsValid(_type: String, _rotation: int) -> bool:
-	if _type in validTypes and _rotation in validRotations:
-		return true
-	return false
+	return sprite.IsValid(_type, _rotation)
 
 
 func IsOnFloor() -> bool:
@@ -104,19 +82,12 @@ func IsOnFloor() -> bool:
 
 
 func GetTetrominoesLocation() -> Array[Vector2i]:
-	var array : Array[Vector2i] = []
-	for tetromino in tetrominoes:
-		var localPosition = Vector2i(
-			roundi((tetromino.position.x) / CELL),
-			roundi((tetromino.position.y) / CELL)
-		)
-		array.append(localPosition + currentPosition)
-	return array
+	return sprite.GetTetrominoesLocation(currentPosition)
 
 
 func UpdateTexture() -> void:
-	for tetromino in tetrominoes:
-		tetromino.texture = currentTexture
+	sprite.currentTexture = currentTexture
+	sprite.UpdateTexture()
 
 
 func _on_area_2d_body_entered(body):
