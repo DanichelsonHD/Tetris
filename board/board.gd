@@ -1,9 +1,24 @@
 class_name Board extends TileMapLayer
 
+const validTypes : Array[String] = ["T", "S", "Z", "J", "L", "I", "O"]
 
 func _ready():
 	pass
 
 
-func DrawTetromino(_type: String, _rotation: int, _position: Vector2i) -> void:
-	print(_type, _rotation, _position)
+func DrawTetromino(_type: String, _positions: Array[Vector2i]) -> void:
+	for _position in _positions:
+		print(_position)
+		set_cell(_position, 0, Vector2i(0, 0))
+
+
+func LocationOccupied(_position: Vector2i) -> bool:
+	return get_cell_source_id(_position) != -1
+
+
+func VerifyLocation(_positions: Array, kick: Vector2i) -> bool:
+	for _position in _positions:
+		var targetPosition : Vector2i = _position + kick
+		if LocationOccupied(targetPosition):
+			return false
+	return true

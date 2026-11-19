@@ -2,12 +2,13 @@
 
 [ext_resource type="Script" uid="uid://clcgguy84bna6" path="res://tetrominoes/tetromino.gd" id="1_64cjv"]
 [ext_resource type="Texture2D" uid="uid://df5au33nb6f5v" path="res://tetrominoes/sprites/pure.png" id="2_nw3ts"]
-[ext_resource type="Texture2D" uid="uid://cu5suuakk2mnv" path="res://tetrominoes/sprites/smooth.png" id="3_8v8xb"]
 [ext_resource type="Script" uid="uid://bonsln1pkhsju" path="res://tetrominoes/states/stateMachine.gd" id="4_8v8xb"]
-[ext_resource type="Script" uid="uid://bpeu7ywfys64u" path="res://tetrominoes/states/S.gd" id="5_iaufh"]
+[ext_resource type="Script" uid="uid://bpeu7ywfys64u" path="res://tetrominoes/states/falling.gd" id="5_iaufh"]
+[ext_resource type="Script" uid="uid://b6mdotos7ftl3" path="res://tetrominoes/states/locking.gd" id="6_y6pm0"]
+[ext_resource type="Script" uid="uid://crgkdhfuvy2nb" path="res://tetrominoes/states/locked.gd" id="7_kfs4g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rdlth"]
-size = Vector2(28, 26)
+size = Vector2(28, 31)
 
 [sub_resource type="Animation" id="Animation_ktnee"]
 resource_name = "I_0"
@@ -1309,45 +1310,6 @@ tracks/7/keys = {
 "values": [Vector2(15, 16)]
 }
 
-[sub_resource type="Animation" id="Animation_i6qp8"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Area2D/TetrominoSquare-3:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(45, 16)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Area2D/TetrominoSquare-1:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(15, 46)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Area2D/TetrominoSquare-4:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(15, 16)]
-}
-
 [sub_resource type="Animation" id="Animation_cq5kf"]
 resource_name = "S_0"
 length = 0.1
@@ -2563,7 +2525,6 @@ _data = {
 &"L_2": SubResource("Animation_64cjv"),
 &"L_3": SubResource("Animation_n16g7"),
 &"O_0": SubResource("Animation_7gahr"),
-&"RESET": SubResource("Animation_i6qp8"),
 &"S_0": SubResource("Animation_cq5kf"),
 &"S_1": SubResource("Animation_0ke8a"),
 &"S_2": SubResource("Animation_4vj2a"),
@@ -2585,15 +2546,15 @@ currentTexture = ExtResource("2_nw3ts")
 [node name="Area2D" type="Area2D" parent="." unique_id=623923420]
 
 [node name="TetrominoSquare-1" type="CollisionShape2D" parent="Area2D" unique_id=1026556252]
-position = Vector2(15, 46)
+position = Vector2(75, 46)
 shape = SubResource("RectangleShape2D_rdlth")
 
 [node name="Sprite-1" type="Sprite2D" parent="Area2D/TetrominoSquare-1" unique_id=110344037]
 position = Vector2(0, -1)
-texture = ExtResource("3_8v8xb")
+texture = ExtResource("2_nw3ts")
 hframes = 8
 vframes = 3
-frame = 3
+frame = 10
 
 [node name="TetrominoSquare-2" type="CollisionShape2D" parent="Area2D" unique_id=2144791568]
 position = Vector2(45, 46)
@@ -2604,10 +2565,10 @@ position = Vector2(0, -1)
 texture = ExtResource("2_nw3ts")
 hframes = 8
 vframes = 3
-frame = 3
+frame = 10
 
 [node name="TetrominoSquare-3" type="CollisionShape2D" parent="Area2D" unique_id=1349344508]
-position = Vector2(45, 16)
+position = Vector2(15, 16)
 shape = SubResource("RectangleShape2D_rdlth")
 
 [node name="Sprite-3" type="Sprite2D" parent="Area2D/TetrominoSquare-3" unique_id=965146009]
@@ -2615,10 +2576,10 @@ position = Vector2(0, -1)
 texture = ExtResource("2_nw3ts")
 hframes = 8
 vframes = 3
-frame = 3
+frame = 10
 
 [node name="TetrominoSquare-4" type="CollisionShape2D" parent="Area2D" unique_id=2128685140]
-position = Vector2(15, 16)
+position = Vector2(15, 46)
 shape = SubResource("RectangleShape2D_rdlth")
 
 [node name="Sprite-4" type="Sprite2D" parent="Area2D/TetrominoSquare-4" unique_id=128885942]
@@ -2626,28 +2587,22 @@ position = Vector2(0, -1)
 texture = ExtResource("2_nw3ts")
 hframes = 8
 vframes = 3
-frame = 3
+frame = 10
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1317898025]
 libraries/ = SubResource("AnimationLibrary_nw3ts")
-autoplay = &"t_0"
+autoplay = &"J_0"
 
 [node name="StateMachine" type="Node2D" parent="." unique_id=1463769305]
 script = ExtResource("4_8v8xb")
 
-[node name="S" type="Node2D" parent="StateMachine" unique_id=552064816]
+[node name="Falling" type="Node2D" parent="StateMachine" unique_id=552064816]
 script = ExtResource("5_iaufh")
 
-[node name="Z" type="Node2D" parent="StateMachine" unique_id=1974161472]
+[node name="Locking" type="Node2D" parent="StateMachine" unique_id=1974161472]
+script = ExtResource("6_y6pm0")
 
-[node name="L" type="Node2D" parent="StateMachine" unique_id=1833667393]
-
-[node name="J" type="Node2D" parent="StateMachine" unique_id=478472658]
-
-[node name="I" type="Node2D" parent="StateMachine" unique_id=1781655276]
-
-[node name="O" type="Node2D" parent="StateMachine" unique_id=142081904]
-
-[node name="T" type="Node2D" parent="StateMachine" unique_id=1607739724]
+[node name="Locked" type="Node2D" parent="StateMachine" unique_id=1833667393]
+script = ExtResource("7_kfs4g")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

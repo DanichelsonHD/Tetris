@@ -15,6 +15,6 @@ rendering_quadrant_size = 30
 physics_quadrant_size = 30
 
 [node name="Tetromino" parent="Board" unique_id=1387009445 instance=ExtResource("2_e2o6t")]
-currentType = "T"
-currentRotation = 3
-currentPosition = Vector2i(5, 5)
+position = Vector2(90, 0)
+currentType = "I"
+currentPosition = Vector2i(3, 0)

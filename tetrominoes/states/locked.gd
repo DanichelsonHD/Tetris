@@ -1,4 +1,4 @@
-class_name S extends State
+class_name Locked extends State
 
 
 func _ready() -> void:
@@ -17,9 +17,9 @@ func HandleInput(_event: InputEvent) -> State:
 	return null
 
 func Enter() -> void:
-	print("Entered S State")
-	animationPlayer.play("S_" + str(tetromino.currentRotation))
+	print("Entered Locked State")
 	pass
 
 func Exit() -> void:
+	
 	pass

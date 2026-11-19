@@ -31,7 +31,7 @@ func SortTetromino() -> void:
 	
 	var sortedPiece = currentBag.pick_random()
 	currentBag.erase(sortedPiece)
-	tetromino.UpdateFrame(sortedPiece, 0)
+	#tetromino.UpdateFrame(sortedPiece, 0)
 
 func NewBag() -> void:
 	currentBag = tetromino.validTypes.duplicate()

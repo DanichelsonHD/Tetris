@@ -19,7 +19,7 @@ const KickTable180 : Array[Array] = [
 	[0, +1], [+1, 0], [0, -1], [-1, 0]
 ]
 
-func GetKickCase(current: int, next: int) -> Array:
+func GetKickCase(current: int, next: int) -> Array[Array]:
 	if current - next == 2 or current - next == -2:
 		return KickTable180
 		
@@ -36,10 +36,11 @@ func GetKickCase(current: int, next: int) -> Array:
 	return [[0,0]]
 
 
-func VerifyKickCase(kickTable: Array[Array]) -> Vector2i:
-	for kick in kickTable:
-		if board.VerifyLocation(tetromino.GetTetrominoesLocation(), kick):
-			return Vector2i(kick[0], kick[1])
+func VerifyKickCase(kickTable: Array) -> Vector2i:
+	for kick in [[0,0]] + kickTable:
+		var vectorKick = Vector2i(kick[0], kick[1])
+		if board.VerifyLocation(tetromino.GetTetrominoesLocation(), vectorKick):
+			return vectorKick
 	return Vector2i.ZERO
 
 
