@@ -12,4 +12,5 @@ func Enter() -> void:
 
 func Exit() -> void:
 	tetromino.hold = false
+	tetromino.currentRotation = 0
 	board.VerifyLines()

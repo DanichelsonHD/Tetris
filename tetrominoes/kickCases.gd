@@ -46,9 +46,9 @@ func GetIKickCase(current: int, next: int) -> Array[Array]:
 		return IKickTable[1]
 		
 	if (current == 1 and next == 2) or (current == 0 and next == 3):
-		return IKickTable[0]
+		return IKickTable[2]
 	if (current == 2 and next == 1) or (current == 3 and next == 0):
-		return IKickTable[0]
+		return IKickTable[3]
 		
 	return [[0, 0]]
 

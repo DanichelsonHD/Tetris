@@ -88,7 +88,7 @@ func ApplyRotation(testRotation: int) -> void:
 	
 	var kickCase : Vector2i = kickCases.VerifyKickCase(kickTable, vectorRotation)
 	
-	if kickCase != Vector2i(-5, -5) or kickTable != [[0, 0]]:
+	if kickCase != Vector2i(-5, -5) and kickTable != [[0, 0]]:
 		currentRotation = testRotation
 		currentPosition += kickCase
 		
