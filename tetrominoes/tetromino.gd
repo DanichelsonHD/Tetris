@@ -3,7 +3,6 @@ class_name Tetromino extends Node2D
 const validRotations : Array[int] = [0, 1, 2, 3]
 const validTypes : Array[String] = ["T", "S", "Z", "J", "L", "I", "O"]
 const CELL : int = 30
-const MARGIN : int = 15
 
 @export var currentType : String
 @export var currentRotation : int = 0
@@ -11,12 +10,11 @@ const MARGIN : int = 15
 @export var currentTexture : CompressedTexture2D
 
 @onready var stateMachine : StateMachine = $StateMachine
-@onready var animationPlayer : AnimationPlayer = $AnimationPlayer
 @onready var kickCases = $KickCases
-@onready var area2D : Area2D = $Area2D
-@onready var tetrominoes : Array[CollisionShape2D] = [
-	$"Area2D/TetrominoSquare-1", $"Area2D/TetrominoSquare-2", 
-	$"Area2D/TetrominoSquare-3", $"Area2D/TetrominoSquare-4"
+@onready var rotations = $Rotations
+@onready var tetrominoes : Array[Sprite2D] = [
+	$"Rotations/Sprite-1", $"Rotations/Sprite-2", 
+	$"Rotations/Sprite-3", $"Rotations/Sprite-4"
 ]
 
 signal pieceLocked
@@ -36,8 +34,14 @@ func UpdateFrame(_type: String, _rotation: int) -> void:
 	
 	if _type == "O":
 		_rotation = 0
-		
-	animationPlayer.play(_type + "_" + str(_rotation))
+	
+	for mino in tetrominoes:
+		var animation : Array = rotations.rotations[_type + "_" + str(_rotation)]
+		mino.position = Vector2(
+			animation[mino.z_index][0] * 30,
+			animation[mino.z_index][1] * 30
+		)
+		mino.frame = animation[0][0]
 
 
 func UpdatePosition(x: int, y: int) -> void:
@@ -103,8 +107,8 @@ func GetTetrominoesLocation() -> Array[Vector2i]:
 	var array : Array[Vector2i] = []
 	for tetromino in tetrominoes:
 		var localPosition = Vector2i(
-			roundi((tetromino.position.x - MARGIN) / CELL), # Subtraí por causa de margem e 
-			roundi((tetromino.position.y - MARGIN) / CELL)  # dividi pra virar posição de Vector2i
+			roundi((tetromino.position.x) / CELL),
+			roundi((tetromino.position.y) / CELL)
 		)
 		array.append(localPosition + currentPosition)
 	return array
@@ -112,7 +116,7 @@ func GetTetrominoesLocation() -> Array[Vector2i]:
 
 func UpdateTexture() -> void:
 	for tetromino in tetrominoes:
-		tetromino.get_child(0).texture = currentTexture
+		tetromino.texture = currentTexture
 
 
 func _on_area_2d_body_entered(body):
