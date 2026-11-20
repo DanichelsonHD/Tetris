@@ -101,3 +101,9 @@ func NewBag(tempBag: Array[String]) -> Array[String]:
 	tempBag = Globals.validTypes.duplicate()
 	tempBag.shuffle()
 	return tempBag
+
+func _notification(notification: int) -> void:
+	if notification == NOTIFICATION_WM_CLOSE_REQUEST:
+		print("Ending game")
+		Globals.UpdateScore(true)
+		get_tree().quit()
