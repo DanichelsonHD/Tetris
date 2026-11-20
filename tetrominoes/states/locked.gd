@@ -5,7 +5,6 @@ func Process(_delta: float) -> State:
 	return falling
 
 func Enter() -> void:
-	print("Entered Locked State")
 	board.DrawTetromino(tetromino.currentType, tetromino.GetTetrominoesLocation())
 	tetromino.pieceLocked.emit()
 	tetromino.UpdatePosition(3, -3)

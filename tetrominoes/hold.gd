@@ -1,10 +1,6 @@
 class_name Hold extends Node2D
 
-const validRotations : Array[int] = [0, 1, 2, 3]
-const validTypes : Array[String] = ["T", "S", "Z", "J", "L", "I", "O"]
-const CELL : int = 30
-
-@export var currentTexture : CompressedTexture2D
+var currentTexture : CompressedTexture2D
 
 @onready var rotations = $Rotations
 @onready var tetrominoes : Array[Sprite2D] = [
@@ -33,7 +29,7 @@ func UpdateFrame(_type: String, _rotation: int) -> void:
 
 
 func IsValid(_type: String, _rotation: int) -> bool:
-	if _type in validTypes and _rotation in validRotations:
+	if _type in Globals.validTypes and _rotation in Globals.validRotations:
 		return true
 	return false
 
@@ -42,8 +38,8 @@ func GetTetrominoesLocation(_position: Vector2i) -> Array[Vector2i]:
 	var array : Array[Vector2i] = []
 	for tetromino in tetrominoes:
 		var localPosition = Vector2i(
-			roundi((tetromino.position.x) / CELL),
-			roundi((tetromino.position.y) / CELL)
+			roundi((tetromino.position.x) / Globals.CELL),
+			roundi((tetromino.position.y) / Globals.CELL)
 		)
 		array.append(localPosition + _position)
 	return array

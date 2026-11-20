@@ -3,6 +3,8 @@ class_name Game extends Node2D
 @onready var board : Board = $Board
 @onready var hold : Hold = $Hold
 @onready var tetromino : Tetromino = $Board/Tetromino
+@onready var subtitle = $Subtitle
+@onready var lineCleared = $LineCleared
 
 @onready var nextPieces : Array[Hold] = [$Next_1, $Next_2, $Next_3, $Next_4, $Next_5, $Next_6]
 
@@ -13,18 +15,30 @@ var nextBag : Array[String]
 func _ready():
 	tetromino.Initialize(board)
 	BOARD.get_source(0).texture = tetromino.currentTexture
+	for nextPiece in nextPieces:
+		nextPiece.currentTexture = tetromino.currentTexture
+	hold.currentTexture = tetromino.currentTexture
 	currentBag = NewBag(currentBag)
 	SortTetromino()
 	tetromino.pieceLocked.connect(SortTetromino)
 
+
 func _process(delta):
 	if board.GameEnded():
+		Globals.updateScore()
 		Reset()
 	for index in nextPieces.size():
 		NextSprite(nextPieces[index], index, 487.5, 7.5)
 
+
 func _physics_process(delta):
-	pass
+	UpdateTexts()
+
+
+func UpdateTexts() -> void:
+	subtitle.text = str(Globals.level).pad_zeros(2) + "   " + str(Globals.linesCleared).pad_zeros(3) + "  " + str(Globals.score).pad_zeros(6) + "  " + str(Globals.top).pad_zeros(6)
+	lineCleared.text = Globals.lineClearedType[Globals.lastLineCleared]
+
 
 func NextSprite(_hold: Hold, _index: int, _position: float, _margin: float) -> void:
 	var _type = currentBag[_index]
@@ -64,7 +78,7 @@ func SwapHold() -> void:
 			tetromino.currentType = _holdType
 			tetromino.UpdateFrame(_holdType, 0)
 		tetromino.UpdatePosition(3, 0)
-		ChangeSprite(hold, hold.type, 210, 10)
+		ChangeSprite(hold, hold.type, 480, 10)
 		tetromino.hold = true
 
 
@@ -79,6 +93,6 @@ func SortTetromino() -> void:
 
 
 func NewBag(tempBag: Array[String]) -> Array[String]:
-	tempBag = tetromino.sprite.validTypes.duplicate()
+	tempBag = Globals.validTypes.duplicate()
 	tempBag.shuffle()
 	return tempBag

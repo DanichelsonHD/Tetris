@@ -3,13 +3,39 @@
 [ext_resource type="PackedScene" uid="uid://c4rsomq3qk2bn" path="res://board/board.tscn" id="1_80nbo"]
 [ext_resource type="Script" uid="uid://brlrqv3jxrgmd" path="res://game.gd" id="1_feb5d"]
 [ext_resource type="PackedScene" uid="uid://40dyxmb4xdve" path="res://tetrominoes/tetromino.tscn" id="2_e2o6t"]
+[ext_resource type="Texture2D" uid="uid://dk6bs85nucaw5" path="res://tetrominoes/sprites/brick.png" id="4_eow3j"]
 [ext_resource type="PackedScene" uid="uid://c4omj4lnvgi22" path="res://tetrominoes/hold.tscn" id="4_fc0e3"]
+[ext_resource type="FontFile" uid="uid://cncroomsio72b" path="res://font/ByteBounce.ttf" id="5_7jktm"]
+[ext_resource type="FontFile" uid="uid://6nttpssy3yu2" path="res://font/BlockCraft.otf" id="6_ryrav"]
 
 [sub_resource type="Gradient" id="Gradient_feb5d"]
 colors = PackedColorArray(0, 0.105882354, 0, 1, 0.12686801, 0.012153827, 0.13416663, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_rdlth"]
 gradient = SubResource("Gradient_feb5d")
+
+[sub_resource type="Gradient" id="Gradient_fc0e3"]
+colors = PackedColorArray(0, 0, 0, 0.78431374, 0, 0, 0, 0.78039217)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rdlth"]
+gradient = SubResource("Gradient_fc0e3")
+
+[sub_resource type="LabelSettings" id="LabelSettings_rdlth"]
+font = ExtResource("5_7jktm")
+font_size = 35
+
+[sub_resource type="LabelSettings" id="LabelSettings_eow3j"]
+font = ExtResource("6_ryrav")
+font_size = 45
+
+[sub_resource type="LabelSettings" id="LabelSettings_ryrav"]
+paragraph_spacing = -4.5
+font = ExtResource("5_7jktm")
+font_size = 35
+
+[sub_resource type="LabelSettings" id="LabelSettings_j5wjh"]
+font = ExtResource("5_7jktm")
+font_size = 60
 
 [node name="Game" type="Node2D" unique_id=558704298]
 script = ExtResource("1_feb5d")
@@ -24,45 +50,131 @@ z_as_relative = false
 position = Vector2(90, -90)
 currentType = "I"
 currentPosition = Vector2i(3, -3)
+currentTexture = ExtResource("4_eow3j")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=768815235]
 z_index = -2
-position = Vector2(284, 491.00003)
-scale = Vector2(2.6, 924)
+position = Vector2(299, 516)
+scale = Vector2(2.6906252, 924)
 texture = SubResource("GradientTexture1D_rdlth")
 
 [node name="Sprite2D2" type="Sprite2D" parent="." unique_id=33470177]
 z_index = 5
-position = Vector2(282, 67)
-scale = Vector2(2.6, 208.00002)
+position = Vector2(299.59998, 67)
+scale = Vector2(2.6984375, 208.00002)
 texture = SubResource("GradientTexture1D_rdlth")
 
 [node name="Next_1" parent="." unique_id=1670892946 instance=ExtResource("4_fc0e3")]
 z_index = 6
-position = Vector2(487.5, 255)
+position = Vector2(487.5, 414)
 scale = Vector2(0.5, 0.5)
 
 [node name="Next_2" parent="." unique_id=1245641898 instance=ExtResource("4_fc0e3")]
-position = Vector2(487.5, 315)
+z_index = 6
+position = Vector2(487.5, 474)
 scale = Vector2(0.5, 0.5)
 
 [node name="Next_3" parent="." unique_id=191968714 instance=ExtResource("4_fc0e3")]
-position = Vector2(487.5, 375)
+z_index = 6
+position = Vector2(487.5, 534)
 scale = Vector2(0.5, 0.5)
 
 [node name="Next_4" parent="." unique_id=42802861 instance=ExtResource("4_fc0e3")]
-position = Vector2(487.5, 435)
+z_index = 6
+position = Vector2(487.5, 594)
 scale = Vector2(0.5, 0.5)
 
 [node name="Next_5" parent="." unique_id=2038115992 instance=ExtResource("4_fc0e3")]
-position = Vector2(487.5, 495)
+z_index = 6
+position = Vector2(487.5, 654)
 scale = Vector2(0.5, 0.5)
 
 [node name="Next_6" parent="." unique_id=1052217923 instance=ExtResource("4_fc0e3")]
-position = Vector2(487.5, 555)
+z_index = 6
+position = Vector2(487.5, 714)
 scale = Vector2(0.5, 0.5)
 
 [node name="Hold" parent="." unique_id=1242279248 instance=ExtResource("4_fc0e3")]
 z_index = 5
-position = Vector2(210, 60)
+position = Vector2(480.00003, 241.00002)
 scale = Vector2(0.66, 0.66)
+
+[node name="Sprite2D3" type="Sprite2D" parent="." unique_id=343931994]
+z_index = 5
+position = Vector2(315, 105.5)
+scale = Vector2(7.7499995, 1.171875)
+texture = SubResource("GradientTexture2D_rdlth")
+
+[node name="Sprite2D4" type="Sprite2D" parent="." unique_id=571778227]
+z_index = 5
+position = Vector2(510, 248.5)
+scale = Vector2(1.6562496, 1.921875)
+texture = SubResource("GradientTexture2D_rdlth")
+
+[node name="Sprite2D5" type="Sprite2D" parent="." unique_id=2131051182]
+z_index = 5
+position = Vector2(510, 567)
+scale = Vector2(1.65625, 6.6875005)
+texture = SubResource("GradientTexture2D_rdlth")
+
+[node name="Sprite2D6" type="Sprite2D" parent="." unique_id=2898222]
+z_index = 5
+position = Vector2(510, 792.74994)
+scale = Vector2(0.93749934, 0.36718667)
+texture = SubResource("GradientTexture2D_rdlth")
+
+[node name="Sprite2D7" type="Sprite2D" parent="." unique_id=496076262]
+position = Vector2(240, 511)
+scale = Vector2(5.21875, 9.90625)
+texture = SubResource("GradientTexture2D_rdlth")
+
+[node name="Title" type="Label" parent="." unique_id=1806222635]
+z_index = 5
+offset_left = 98.0
+offset_top = 76.0
+offset_right = 493.0
+offset_bottom = 101.0
+text = "LVL   LINES   SCORE        TOP"
+label_settings = SubResource("LabelSettings_rdlth")
+
+[node name="Subtitle" type="Label" parent="." unique_id=1344691701]
+z_index = 5
+offset_left = 95.0
+offset_top = 94.0
+offset_right = 539.0
+offset_bottom = 174.0
+text = "00   000  000000  000000"
+label_settings = SubResource("LabelSettings_eow3j")
+
+[node name="HoldText" type="Label" parent="." unique_id=564142731]
+z_index = 5
+offset_left = 465.0
+offset_top = 196.0
+offset_right = 555.0
+offset_bottom = 226.0
+text = "HOLD"
+label_settings = SubResource("LabelSettings_ryrav")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NextText" type="Label" parent="." unique_id=941783807]
+z_index = 5
+offset_left = 465.0
+offset_top = 361.0
+offset_right = 555.0
+offset_bottom = 391.0
+text = "NEXT"
+label_settings = SubResource("LabelSettings_ryrav")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LineCleared" type="Label" parent="." unique_id=447347039]
+z_index = 5
+offset_left = 90.0
+offset_top = 210.0
+offset_right = 390.0
+offset_bottom = 289.0
+text = "TETRIS!!!!"
+label_settings = SubResource("LabelSettings_j5wjh")
+horizontal_alignment = 1
+vertical_alignment = 1

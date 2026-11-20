@@ -39,7 +39,6 @@ func HandleInput(_event: InputEvent) -> State:
 	return null
 
 func Enter() -> void:
-	print("Entered Locking State")
 	timer = 0
 
 

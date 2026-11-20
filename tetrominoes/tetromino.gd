@@ -27,8 +27,8 @@ func UpdateFrame(_type: String, _rotation: int) -> void:
 
 
 func UpdatePosition(x: int, y: int) -> void:
-	position.x = x * sprite.CELL
-	position.y = y * sprite.CELL
+	position.x = x * Globals.CELL
+	position.y = y * Globals.CELL
 	
 	currentPosition = Vector2i(x, y)
 

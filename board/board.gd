@@ -45,6 +45,7 @@ func MoveLinesDown(clearedLines : Array[int]) -> void:
 				if LocationOccupied(currentSquare):
 					set_cell(currentSquare + Vector2i(0, 1), 0, get_cell_atlas_coords(currentSquare))
 					erase_cell(currentSquare)
+	Globals.LineCleared(clearedLines.size())
 
 
 func DrawTetromino(_type: String, _positions: Array[Vector2i]) -> void:

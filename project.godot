@@ -19,9 +19,13 @@ boot_splash/use_filter=false
 boot_splash/image="uid://cbgnbwcllqpri"
 config/icon="uid://cbgnbwcllqpri"
 
+[autoload]
+
+Globals="*uid://hshn6agp1je3"
+
 [display]
 
-window/size/viewport_width=600
+window/size/viewport_width=630
 window/size/viewport_height=900
 window/stretch/mode="canvas_items"
 

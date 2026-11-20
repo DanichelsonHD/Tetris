@@ -31,7 +31,6 @@ func HandleInput(_event: InputEvent) -> State:
 
 
 func Enter() -> void:
-	print("Entered Falling State")
 	pass
 
 
