@@ -7,7 +7,7 @@ func _ready() -> void:
 	pass
 
 func Process(_delta: float) -> State:
-	if timer > 2:
+	if timer > 0.5:
 		return locked
 	if timer < 0:
 		timer = 0

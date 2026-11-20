@@ -60,8 +60,8 @@ texture = SubResource("GradientTexture1D_rdlth")
 
 [node name="Sprite2D2" type="Sprite2D" parent="." unique_id=33470177]
 z_index = 5
-position = Vector2(299.59998, 67)
-scale = Vector2(2.6984375, 208.00002)
+position = Vector2(299.59998, 74.50001)
+scale = Vector2(2.6984375, 223.00003)
 texture = SubResource("GradientTexture1D_rdlth")
 
 [node name="Next_1" parent="." unique_id=1670892946 instance=ExtResource("4_fc0e3")]
@@ -174,7 +174,6 @@ offset_left = 90.0
 offset_top = 210.0
 offset_right = 390.0
 offset_bottom = 289.0
-text = "TETRIS!!!!"
 label_settings = SubResource("LabelSettings_j5wjh")
 horizontal_alignment = 1
 vertical_alignment = 1

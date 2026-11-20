@@ -15,9 +15,14 @@ var nextBag : Array[String]
 func _ready():
 	tetromino.Initialize(board)
 	BOARD.get_source(0).texture = tetromino.currentTexture
+	
 	for nextPiece in nextPieces:
 		nextPiece.currentTexture = tetromino.currentTexture
+		nextPiece.UpdateTexture()
+		
 	hold.currentTexture = tetromino.currentTexture
+	hold.UpdateTexture()
+	
 	currentBag = NewBag(currentBag)
 	SortTetromino()
 	tetromino.pieceLocked.connect(SortTetromino)
@@ -25,7 +30,7 @@ func _ready():
 
 func _process(delta):
 	if board.GameEnded():
-		Globals.updateScore()
+		Globals.UpdateScore(true)
 		Reset()
 	for index in nextPieces.size():
 		NextSprite(nextPieces[index], index, 487.5, 7.5)

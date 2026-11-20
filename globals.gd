@@ -11,39 +11,59 @@ const lineClearedType : Dictionary[int, String] = {
 	1: "SINGLE!",
 	0: ""
 }
+const lineClearedScore : Dictionary[int, int] = {
+	5: 800,
+	4: 800,
+	3: 500,
+	2: 300,
+	1: 100,
+	0: 0
+}
 
 var lastLineCleared : int = 0
 var level : int = 0
 var linesCleared : int = 0
 var score : int = 0
 var top : int
+var backToBack : int = 0
 
 const SAVE_PATH = "user://tetrisScore.save"
 
 func _ready() -> void:
-	loadScore()
+	LoadScore()
 
 
-func LineCleared(lines: int) -> void:
-	lastLineCleared = lines
+func LineCleared(lines: int, isTSpin: bool) -> void:
+	backToBack = backToBack + 1 if lines != 0 else 0
+	
+	lastLineCleared = lines if not isTSpin else 5
+	linesCleared += lines
+	level = linesCleared / 10
+	
+	UpdateScore(false)
 
 
-func updateScore() -> void:
-	if score > top:
-		saveScore()
+func UpdateScore(gameEnded: bool) -> void:
+	if gameEnded:
+		if score > top:
+			SaveScore()
+		return
+	
+	var multiplier : int = 15 if backToBack > 1 else 10
+	score += lineClearedScore[lastLineCleared] * (level + 1) * multiplier / 10
 
 
-func saveScore() -> void:
+func SaveScore() -> void:
 	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 	if file:
 		file.store_line(str(top))
 		file.close()
 
 
-func loadScore() -> void:
+func LoadScore() -> void:
 	if not FileAccess.file_exists(SAVE_PATH):
 		top = 0
-		saveScore()
+		SaveScore()
 		return
 	
 	var file = FileAccess.open(SAVE_PATH, FileAccess.READ)
