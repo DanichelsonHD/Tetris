@@ -20,18 +20,22 @@ const lineClearedScore : Dictionary[int, int] = {
 	0: 0
 }
 
-var lastLineCleared : int = 0
-var level : int = 0
-var linesCleared : int = 0
-var score : int = 0
+var lastLineCleared : int
+var level : int
+var linesCleared : int
+var score : int
 var top : int
-var backToBack : int = 0
+var backToBack : int
 
 const SAVE_PATH = "user://tetrisScore.save"
 
-func _ready() -> void:
+func Initialize() -> void:
 	LoadScore()
-
+	lastLineCleared = 0
+	level = 0
+	linesCleared = 0
+	score = 0
+	backToBack = 0
 
 func LineCleared(lines: int, isTSpin: bool) -> void:
 	backToBack = backToBack + 1 if lines != 0 else 0
@@ -46,6 +50,7 @@ func LineCleared(lines: int, isTSpin: bool) -> void:
 func UpdateScore(gameEnded: bool) -> void:
 	if gameEnded:
 		if score > top:
+			top = score
 			SaveScore()
 		return
 	
