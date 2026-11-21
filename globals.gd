@@ -4,6 +4,7 @@ const validRotations : Array[int] = [0, 1, 2, 3]
 const validTypes : Array[String] = ["T", "S", "Z", "J", "L", "I", "O"]
 const CELL : int = 30
 const lineClearedType : Dictionary[int, String] = {
+	10: "ALL CLEAR!!!!",
 	5: "T-SPIN",
 	4: "TETRIS!!!!",
 	3: "TRIPLE!!!",
@@ -12,7 +13,8 @@ const lineClearedType : Dictionary[int, String] = {
 	0: ""
 }
 const lineClearedScore : Dictionary[int, int] = {
-	5: 800,
+	10: 1600,
+	5: 1200,
 	4: 800,
 	3: 500,
 	2: 300,
@@ -30,6 +32,7 @@ var backToBack : int
 const SAVE_PATH = "user://tetrisScore.save"
 
 func Initialize() -> void:
+	UpdateScore(true)
 	LoadScore()
 	lastLineCleared = 0
 	level = 0
@@ -37,12 +40,17 @@ func Initialize() -> void:
 	score = 0
 	backToBack = 0
 
-func LineCleared(lines: int, isTSpin: bool) -> void:
-	backToBack = backToBack + 1 if lines != 0 else 0
-	
-	lastLineCleared = lines if not isTSpin else 5
+func LineCleared(lines: int, isTSpin: bool, isAllCleared) -> void:
+	if isAllCleared:
+		lastLineCleared = 10
+	elif isTSpin:
+		lastLineCleared =  5
+	else:
+		lastLineCleared = lines
 	linesCleared += lines
 	level = linesCleared / 10
+	
+	backToBack = backToBack + 1 if lines >= 4 else 0
 	
 	UpdateScore(false)
 

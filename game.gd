@@ -13,6 +13,7 @@ var currentBag : Array[String]
 var nextBag : Array[String]
 
 func _ready():
+	Globals.Initialize()
 	tetromino.Initialize(board)
 	BOARD.get_source(0).texture = tetromino.currentTexture
 	
@@ -38,12 +39,16 @@ func _process(delta):
 
 func _physics_process(delta):
 	UpdateTexts()
+	tetromino.UpdateTimers(delta)
 
 
 func UpdateTexts() -> void:
-	subtitle.text = str(Globals.level).pad_zeros(2) + "   " + str(Globals.linesCleared).pad_zeros(3) + "  " + str(Globals.score).pad_zeros(6) + "  " + str(Globals.top).pad_zeros(6)
+	subtitle.text = FormatInt(Globals.level, 2) + "   " + FormatInt(Globals.linesCleared, 3) + "  " + FormatInt(Globals.score, 6) + "  " + FormatInt(Globals.top, 6)
 	lineCleared.text = Globals.lineClearedType[Globals.lastLineCleared]
 
+
+func FormatInt(integer: int, zeros: int) -> String:
+	return str(integer).pad_zeros(zeros)
 
 func NextSprite(_hold: Hold, _index: int, _position: float, _margin: float) -> void:
 	var _type = currentBag[_index]
@@ -66,6 +71,7 @@ func _unhandled_input(event):
 
 
 func Reset() -> void:
+	Globals.Initialize()
 	get_tree().reload_current_scene()
 
 

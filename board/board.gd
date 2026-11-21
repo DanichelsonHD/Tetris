@@ -23,21 +23,26 @@ func GameEnded() -> bool:
 
 func VerifyLines() -> void:
 	var clearedLines : Array[int] = []
+	var squareEmpty : int = 0
 	
 	for line in range(0, 20):
 		var occupied : int = 0
 		for row in range(0, 10):
 			if LocationOccupied(Vector2i(row, line)):
 				occupied += 1
+			else:
+				squareEmpty += 1
 		
 		if occupied == 10:
 			clearedLines.append(line)
+			squareEmpty += 10
 			for row in range(0, 10):
 				erase_cell(Vector2i(row, line))
-	MoveLinesDown(clearedLines)
+	
+	MoveLinesDown(clearedLines, squareEmpty)
 
 
-func MoveLinesDown(clearedLines : Array[int]) -> void:
+func MoveLinesDown(clearedLines : Array[int], squareEmpty: int) -> void:
 	for clearedLine in clearedLines:
 		for line in range(clearedLine, 0, -1):
 			for row in range(0, 10):
@@ -46,8 +51,9 @@ func MoveLinesDown(clearedLines : Array[int]) -> void:
 					set_cell(currentSquare + Vector2i(0, 1), 0, get_cell_atlas_coords(currentSquare))
 					erase_cell(currentSquare)
 	
+	var isAllCleared : bool = true if squareEmpty == 200 else false
 	var isTSpin = false
-	Globals.LineCleared(clearedLines.size(), isTSpin)
+	Globals.LineCleared(clearedLines.size(), isTSpin, isAllCleared)
 
 
 func DrawTetromino(_type: String, _positions: Array[Vector2i]) -> void:

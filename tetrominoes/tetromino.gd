@@ -1,5 +1,8 @@
 class_name Tetromino extends Node2D
 
+const ARR : float = 0.033
+const DAS : float = 0.133
+
 @export var currentType : String
 @export var currentRotation : int = 0
 @export var currentPosition : Vector2i
@@ -10,14 +13,20 @@ class_name Tetromino extends Node2D
 @onready var sprite = $Sprite
 
 signal pieceLocked
+signal pieceMoved
 
 var board : Board
 var hold : bool
+var DASTimer : float
+var ARRTimer : float
+var movementDirection : String
 
 func Initialize(_board: Board):
 	UpdateTexture()
 	board = _board
 	hold = false
+	DASTimer = 0
+	ARRTimer = 0
 	kickCases.Initialize(self, _board)
 	stateMachine.Initialize(self, _board)
 
@@ -33,16 +42,39 @@ func UpdatePosition(x: int, y: int) -> void:
 	currentPosition = Vector2i(x, y)
 
 
+func HandleMovement(_direction: String) -> void:
+	if DASTimer == 0:
+		DASTimer = DAS
+	
+	movementDirection = _direction
+
+
+func UpdateTimers(_delta: float) -> void:
+	if DASTimer > 0:
+		DASTimer -= _delta
+	if DASTimer <= 0:
+		if ARRTimer <= 0:
+			ARRTimer = ARR
+			if movementDirection == "Left":
+				MoveLeft()
+			elif movementDirection == "Right":
+				MoveRight()
+		if ARRTimer > 0:
+			ARRTimer -= _delta
+
+
 func MoveLeft() -> void:
 	var left : Vector2i = Vector2i(-1, 0)
 	if board.VerifyLocation(GetTetrominoesLocation(), left):
 		UpdatePosition(currentPosition.x + left.x, currentPosition.y)
+		pieceMoved.emit("MoveLeft")
 
 
 func MoveRight() -> void:
 	var right : Vector2i = Vector2i(1, 0)
 	if board.VerifyLocation(GetTetrominoesLocation(), right):
 		UpdatePosition(currentPosition.x + right.x, currentPosition.y)
+		pieceMoved.emit("MoveRight")
 
 
 func RotateLeft() -> void:
@@ -89,6 +121,7 @@ func ApplyRotation(testRotation: int) -> void:
 	var kickCase : Vector2i = kickCases.VerifyKickCase(kickTable, vectorRotation)
 	
 	if kickCase != Vector2i(-5, -5) and kickTable != [[0, 0]]:
+		pieceMoved.emit("Rotate")
 		currentRotation = testRotation
 		currentPosition += kickCase
 		
