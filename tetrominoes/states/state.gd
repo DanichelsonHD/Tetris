@@ -37,14 +37,21 @@ func DetectInput(_event: InputEvent) -> void:
 		tetromino.MoveRight()
 		tetromino.HandleMovement("Right")
 	
-	if _event.is_action_released("moveLeft"):
+	if not Input.is_action_pressed("moveLeft") and tetromino.movementDirection == "Left":
+		if Input.is_action_pressed("moveRight"):
+			tetromino.movementDirection = "Right"
+		else:
+			tetromino.ARRTimer = 0
+			tetromino.movementDirection = ""
 		tetromino.DASTimer = 0
-		tetromino.ARRTimer = 0
-		tetromino.movementDirection = ""
-	if _event.is_action_released("moveRight"):
+	
+	if not Input.is_action_pressed("moveRight") and tetromino.movementDirection == "Right":
+		if Input.is_action_pressed("moveLeft"):
+			tetromino.movementDirection = "Left"
+		else:
+			tetromino.ARRTimer = 0
+			tetromino.movementDirection = ""
 		tetromino.DASTimer = 0
-		tetromino.ARRTimer = 0
-		tetromino.movementDirection = ""
 
 func Enter() -> void:
 	pass

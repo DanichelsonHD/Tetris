@@ -43,7 +43,7 @@ func UpdatePosition(x: int, y: int) -> void:
 
 
 func HandleMovement(_direction: String) -> void:
-	if DASTimer == 0:
+	if DASTimer <= 0:
 		DASTimer = DAS
 	
 	movementDirection = _direction
@@ -128,6 +128,17 @@ func ApplyRotation(testRotation: int) -> void:
 		UpdateFrame(currentType, currentRotation)
 		UpdatePosition(currentPosition.x, currentPosition.y)
 
+
+func HardDrop() -> Vector2i:
+	var hardDrop : int = 20
+	for _position in GetTetrominoesLocation():
+		for height in range(20, _position.y, -1):
+			var currentLowest = Vector2i(_position.x, height)
+			if not board.LocationOccupied(currentLowest):
+				hardDrop = currentLowest.y if currentLowest.y < hardDrop else hardDrop
+	
+	hardDrop -= 2 if currentType == "I" else 1
+	return Vector2i(currentPosition.x, hardDrop)
 
 func IsValid(_type: String, _rotation: int) -> bool:
 	return sprite.IsValid(_type, _rotation)
