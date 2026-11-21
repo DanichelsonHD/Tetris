@@ -3,15 +3,19 @@ class_name StateMachine extends Node2D
 var states : Array[State]
 var prevState : State
 var currentState : State
+var lastMovement : String
 
 func _ready():
 	process_mode = Node.PROCESS_MODE_DISABLED 
 
+
 func _process(delta):
 	ChangeState(currentState.Process(delta))
 
+
 func _physics_process(delta):
 	ChangeState(currentState.Physics(delta))
+
 
 func _unhandled_input(event):
 	ChangeState(currentState.HandleInput(event))
@@ -24,6 +28,7 @@ func Initialize(_tetromino: Tetromino, _board: Board) -> void:
 		if child is State:
 			child.tetromino = _tetromino
 			child.board = _board
+			child.stateMachine = self
 			states.append(child)
 	
 	if states.size() > 0:

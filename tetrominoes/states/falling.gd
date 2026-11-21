@@ -7,9 +7,6 @@ var timer : float = 0
 var floorTouched : bool
 var softDropped : bool
 
-func _ready() -> void:
-	pass
-
 func Process(_delta: float) -> State:
 	if timer < CalculateG():
 		timer += _delta

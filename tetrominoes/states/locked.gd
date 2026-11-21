@@ -12,4 +12,6 @@ func Enter() -> void:
 func Exit() -> void:
 	tetromino.hold = false
 	tetromino.currentRotation = 0
-	board.VerifyLines()
+	var isTSpin : bool = tetromino.currentType == "T" and stateMachine.lastMovement == "Rotate"
+	board.VerifyLines(tetromino.WasTSpin(isTSpin))
+	stateMachine.lastMovement = ""

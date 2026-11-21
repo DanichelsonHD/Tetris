@@ -2,6 +2,12 @@ class_name Tetromino extends Node2D
 
 const ARR : float = 0.033
 const DAS : float = 0.133
+const fourCorners : Array[Vector2i] = [
+	Vector2i(0, 0),
+	Vector2i(2, 0),
+	Vector2i(0, 2),
+	Vector2i(2, 2)
+]
 
 @export var currentType : String
 @export var currentRotation : int = 0
@@ -86,6 +92,7 @@ func RotateLeft() -> void:
 	
 	ApplyRotation(testRotation)
 
+
 func RotateRight() -> void:
 	var testRotation : int
 	if currentRotation == 3:
@@ -94,6 +101,7 @@ func RotateRight() -> void:
 		testRotation = currentRotation + 1
 		
 	ApplyRotation(testRotation)
+
 
 func Rotate180() -> void:
 	var testRotation : int
@@ -136,6 +144,17 @@ func HardDrop() -> Vector2i:
 	
 	return hardDrop
 
+
+func WasTSpin(isTSpin: bool) -> bool:
+	var occupiedCorners : int = 4
+	for position in fourCorners:
+		if board.LocationOccupied(position + currentPosition):
+			occupiedCorners -= 1
+	
+	print(occupiedCorners >= 3 and isTSpin)
+	return occupiedCorners >= 3 and isTSpin
+
+
 func IsValid(_type: String, _rotation: int) -> bool:
 	return sprite.IsValid(_type, _rotation)
 
@@ -151,8 +170,3 @@ func GetTetrominoesLocation() -> Array[Vector2i]:
 func UpdateTexture() -> void:
 	sprite.currentTexture = currentTexture
 	sprite.UpdateTexture()
-
-
-func _on_area_2d_body_entered(body):
-	if body is Board:
-		stateMachine.ChangeState(stateMachine.get_child(1))

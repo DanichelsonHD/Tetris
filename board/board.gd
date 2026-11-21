@@ -10,10 +10,6 @@ const colors : Dictionary[String, Vector2i] = {
 	"O": Vector2i(3, 0)
 }
 
-func _ready():
-	pass
-
-
 func GameEnded() -> bool:
 	for index in range(3, 6):
 		if LocationOccupied(Vector2i(index, 0)):
@@ -21,7 +17,7 @@ func GameEnded() -> bool:
 	return false
 
 
-func VerifyLines() -> void:
+func VerifyLines(isTSpin: bool) -> void:
 	var clearedLines : Array[int] = []
 	var squareEmpty : int = 0
 	
@@ -39,10 +35,10 @@ func VerifyLines() -> void:
 			for row in range(0, 10):
 				erase_cell(Vector2i(row, line))
 	
-	MoveLinesDown(clearedLines, squareEmpty)
+	MoveLinesDown(clearedLines, squareEmpty, isTSpin)
 
 
-func MoveLinesDown(clearedLines : Array[int], squareEmpty: int) -> void:
+func MoveLinesDown(clearedLines : Array[int], squareEmpty: int, isTSpin: bool) -> void:
 	for clearedLine in clearedLines:
 		for line in range(clearedLine, 0, -1):
 			for row in range(0, 10):
@@ -52,7 +48,6 @@ func MoveLinesDown(clearedLines : Array[int], squareEmpty: int) -> void:
 					erase_cell(currentSquare)
 	
 	var isAllCleared : bool = true if squareEmpty == 200 else false
-	var isTSpin = false
 	Globals.LineCleared(clearedLines.size(), isTSpin, isAllCleared)
 
 

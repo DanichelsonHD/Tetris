@@ -2,6 +2,7 @@ class_name State extends Node2D
 
 @onready var tetromino : Tetromino
 @onready var board : Board
+@onready var stateMachine : StateMachine
 
 @onready var falling = $"../Falling"
 @onready var locking = $"../Locking"
