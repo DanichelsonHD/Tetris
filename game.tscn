@@ -47,9 +47,9 @@ position = Vector2(90, 210)
 
 [node name="Tetromino" parent="Board" unique_id=1387009445 instance=ExtResource("2_e2o6t")]
 z_as_relative = false
-position = Vector2(90, -90)
+position = Vector2(90, -60)
 currentType = "I"
-currentPosition = Vector2i(3, -3)
+currentPosition = Vector2i(3, -2)
 currentTexture = ExtResource("4_eow3j")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=768815235]

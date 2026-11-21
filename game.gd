@@ -63,8 +63,6 @@ func ChangeSprite(_hold: Hold, _type: String, _position: float, _margin: float) 
 
 
 func _unhandled_input(event):
-	#if event.is_action_pressed("hardDrop"): SortTetromino()
-	#if event.is_action_pressed("softDrop"): tetromino.UpdatePosition(tetromino.currentPosition.x, tetromino.currentPosition.y + 1)
 	if event.is_action_pressed("holdPiece"): SwapHold()
 	if event.is_action_pressed("resetKey"): Reset()
 	pass
