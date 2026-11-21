@@ -46,11 +46,17 @@ z_as_relative = false
 position = Vector2(90, 210)
 
 [node name="Tetromino" parent="Board" unique_id=1387009445 instance=ExtResource("2_e2o6t")]
+z_index = 1
 z_as_relative = false
 position = Vector2(90, -60)
 currentType = "I"
 currentPosition = Vector2i(3, -2)
 currentTexture = ExtResource("4_eow3j")
+
+[node name="Ghost" parent="Board" unique_id=1883528745 instance=ExtResource("4_fc0e3")]
+modulate = Color(0.25038567, 0.25038567, 0.2503857, 1)
+z_as_relative = false
+position = Vector2(-90, -210)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=768815235]
 z_index = -2

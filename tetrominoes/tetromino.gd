@@ -130,15 +130,11 @@ func ApplyRotation(testRotation: int) -> void:
 
 
 func HardDrop() -> Vector2i:
-	var hardDrop : int = 20
-	for _position in GetTetrominoesLocation():
-		for height in range(20, _position.y, -1):
-			var currentLowest = Vector2i(_position.x, height)
-			if not board.LocationOccupied(currentLowest):
-				hardDrop = currentLowest.y if currentLowest.y < hardDrop else hardDrop
+	var hardDrop : Vector2i = currentPosition
+	while board.VerifyLocation(sprite.GetTetrominoesLocation(hardDrop), Vector2i(0, 1)):
+		hardDrop.y += 1
 	
-	hardDrop -= 2 if currentType == "I" else 1
-	return Vector2i(currentPosition.x, hardDrop)
+	return hardDrop
 
 func IsValid(_type: String, _rotation: int) -> bool:
 	return sprite.IsValid(_type, _rotation)

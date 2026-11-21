@@ -2,6 +2,7 @@ class_name Game extends Node2D
 
 @onready var board : Board = $Board
 @onready var hold : Hold = $Hold
+@onready var ghost = $Board/Ghost
 @onready var tetromino : Tetromino = $Board/Tetromino
 @onready var subtitle = $Subtitle
 @onready var lineCleared = $LineCleared
@@ -17,16 +18,19 @@ func _ready():
 	tetromino.Initialize(board)
 	BOARD.get_source(0).texture = tetromino.currentTexture
 	
+	UpdateTexture(hold)
+	UpdateTexture(ghost)
 	for nextPiece in nextPieces:
-		nextPiece.currentTexture = tetromino.currentTexture
-		nextPiece.UpdateTexture()
-		
-	hold.currentTexture = tetromino.currentTexture
-	hold.UpdateTexture()
+		UpdateTexture(nextPiece)
 	
 	currentBag = NewBag(currentBag)
 	SortTetromino()
 	tetromino.pieceLocked.connect(SortTetromino)
+
+
+func UpdateTexture(_hold: Hold) -> void:
+	_hold.currentTexture = tetromino.currentTexture
+	_hold.UpdateTexture()
 
 
 func _process(delta):
@@ -38,6 +42,7 @@ func _process(delta):
 
 
 func _physics_process(delta):
+	HandleGhost()
 	UpdateTexts()
 	tetromino.UpdateTimers(delta)
 
@@ -49,6 +54,12 @@ func UpdateTexts() -> void:
 
 func FormatInt(integer: int, zeros: int) -> String:
 	return str(integer).pad_zeros(zeros)
+
+
+func HandleGhost() -> void:
+	ghost.UpdateFrame(tetromino.currentType, tetromino.currentRotation)
+	ghost.UpdatePosition(tetromino.HardDrop())
+
 
 func NextSprite(_hold: Hold, _index: int, _position: float, _margin: float) -> void:
 	var _type = currentBag[_index]
@@ -65,7 +76,6 @@ func ChangeSprite(_hold: Hold, _type: String, _position: float, _margin: float) 
 func _unhandled_input(event):
 	if event.is_action_pressed("holdPiece"): SwapHold()
 	if event.is_action_pressed("resetKey"): Reset()
-	pass
 
 
 func Reset() -> void:
@@ -105,6 +115,7 @@ func NewBag(tempBag: Array[String]) -> Array[String]:
 	tempBag = Globals.validTypes.duplicate()
 	tempBag.shuffle()
 	return tempBag
+
 
 func _notification(notification: int) -> void:
 	if notification == NOTIFICATION_WM_CLOSE_REQUEST:

@@ -48,3 +48,7 @@ func GetTetrominoesLocation(_position: Vector2i) -> Array[Vector2i]:
 func UpdateTexture() -> void:
 	for tetromino in tetrominoes:
 		tetromino.texture = currentTexture
+
+
+func UpdatePosition(_position: Vector2i) -> void:
+	position = _position * Vector2i(Globals.CELL, Globals.CELL)

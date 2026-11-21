@@ -43,6 +43,7 @@ func HandleInput(_event: InputEvent) -> State:
 	if _event.is_action_pressed("hardDrop"): 
 		var hardDrop = tetromino.HardDrop()
 		tetromino.UpdatePosition(hardDrop.x, hardDrop.y)
+		return locked
 	
 	if _event.is_action_pressed("softDrop"): softDropped = true
 	if _event.is_action_released("softDrop"): softDropped = false
