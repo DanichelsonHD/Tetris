@@ -148,10 +148,9 @@ func HardDrop() -> Vector2i:
 func WasTSpin(isTSpin: bool) -> bool:
 	var occupiedCorners : int = 4
 	for position in fourCorners:
-		if board.LocationOccupied(position + currentPosition):
+		if not board.LocationOccupied(position + currentPosition):
 			occupiedCorners -= 1
 	
-	print(occupiedCorners >= 3 and isTSpin)
 	return occupiedCorners >= 3 and isTSpin
 
 

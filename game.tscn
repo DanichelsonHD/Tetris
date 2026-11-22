@@ -46,7 +46,7 @@ z_as_relative = false
 position = Vector2(90, 210)
 
 [node name="Tetromino" parent="Board" unique_id=1387009445 instance=ExtResource("2_e2o6t")]
-z_index = 1
+z_index = 4
 z_as_relative = false
 position = Vector2(90, -60)
 currentType = "I"
