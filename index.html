@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+	<title>Tetris</title>
+	<style>
+		html, body {
+			margin: 0;
+			padding: 0;
+			width: 100%;
+			height: 100%;
+			background: #000;
+			overflow: hidden;
+		}
+
+		#game {
+			display: block;
+			width: 100%;
+			height: 100%;
+			border: 0;
+		}
+	</style>
+</head>
+<body>
+	<iframe
+		id="game"
+		src="html/Tetris.html"
+		title="Tetris"
+		allow="autoplay; fullscreen; gamepad"
+		allowfullscreen
+	></iframe>
+
+	<script>
+		// Dá foco ao jogo para que o teclado funcione sem precisar clicar antes
+		const game = document.getElementById('game');
+		game.addEventListener('load', () => game.contentWindow.focus());
+		window.addEventListener('click', () => game.contentWindow.focus());
+	</script>
+</body>
+</html>
