@@ -40,7 +40,7 @@ func VerifyLines(isTSpin: bool) -> void:
 
 func MoveLinesDown(clearedLines : Array[int], squareEmpty: int, isTSpin: bool) -> void:
 	for clearedLine in clearedLines:
-		for line in range(clearedLine, 0, -1):
+		for line in range(clearedLine, -1, -1):
 			for row in range(0, 10):
 				var currentSquare : Vector2i = Vector2i(row, line)
 				if LocationOccupied(currentSquare):

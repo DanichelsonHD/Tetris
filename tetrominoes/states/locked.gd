@@ -9,11 +9,11 @@ func Enter() -> void:
 	board.DrawTetromino(tetromino.currentType, tetromino.GetTetrominoesLocation())
 	var isTSpin : bool = tetromino.currentType == "T" and stateMachine.lastMovement == "Rotate"
 	wasTSpin = tetromino.WasTSpin(isTSpin)
-	tetromino.pieceLocked.emit()
-	tetromino.UpdatePosition(3, -2)
 
 func Exit() -> void:
 	tetromino.hold = false
-	tetromino.currentRotation = 0
 	board.VerifyLines(wasTSpin)
+	tetromino.pieceLocked.emit()
+	tetromino.UpdatePosition(3, -2)
+	tetromino.currentRotation = 0
 	stateMachine.lastMovement = ""

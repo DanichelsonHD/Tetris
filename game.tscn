@@ -41,7 +41,7 @@ font_size = 60
 script = ExtResource("1_feb5d")
 
 [node name="Board" parent="." unique_id=1165720764 instance=ExtResource("1_80nbo")]
-z_index = 6
+z_index = 11
 z_as_relative = false
 position = Vector2(90, 210)
 
@@ -65,7 +65,7 @@ scale = Vector2(2.6906252, 924)
 texture = SubResource("GradientTexture1D_rdlth")
 
 [node name="Sprite2D2" type="Sprite2D" parent="." unique_id=33470177]
-z_index = 5
+z_index = 10
 position = Vector2(299.59998, 74.50001)
 scale = Vector2(2.6984375, 223.00003)
 texture = SubResource("GradientTexture1D_rdlth")
@@ -135,7 +135,7 @@ scale = Vector2(5.21875, 9.90625)
 texture = SubResource("GradientTexture2D_rdlth")
 
 [node name="Title" type="Label" parent="." unique_id=1806222635]
-z_index = 5
+z_index = 11
 offset_left = 98.0
 offset_top = 76.0
 offset_right = 493.0
@@ -144,7 +144,7 @@ text = "LVL   LINES   SCORE        TOP"
 label_settings = SubResource("LabelSettings_rdlth")
 
 [node name="Subtitle" type="Label" parent="." unique_id=1344691701]
-z_index = 5
+z_index = 11
 offset_left = 95.0
 offset_top = 94.0
 offset_right = 539.0
@@ -153,7 +153,7 @@ text = "00   000  000000  000000"
 label_settings = SubResource("LabelSettings_eow3j")
 
 [node name="HoldText" type="Label" parent="." unique_id=564142731]
-z_index = 5
+z_index = 11
 offset_left = 465.0
 offset_top = 196.0
 offset_right = 555.0
@@ -164,7 +164,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="NextText" type="Label" parent="." unique_id=941783807]
-z_index = 5
+z_index = 11
 offset_left = 465.0
 offset_top = 361.0
 offset_right = 555.0
@@ -175,7 +175,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="LineCleared" type="Label" parent="." unique_id=447347039]
-z_index = 5
+z_index = 11
 offset_left = 90.0
 offset_top = 210.0
 offset_right = 390.0

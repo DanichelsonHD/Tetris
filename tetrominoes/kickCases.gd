@@ -20,12 +20,12 @@ const KickTable180 : Array[Array] = [
 ]
 
 func GetKickCase(current: int, next: int) -> Array[Array]:
+	if current - next == 2 or current - next == -2:
+		return KickTable180
+	
 	if tetromino.currentType == "I":
 		return GetIKickCase(current, next)
 	
-	if current - next == 2 or current - next == -2:
-		return KickTable180
-		
 	if current == 1:
 		return KickTable[1]
 	elif current == 3:

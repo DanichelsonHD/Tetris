@@ -35,7 +35,7 @@ func UpdateTexture(_hold: Hold) -> void:
 
 func _process(delta):
 	if board.GameEnded():
-		Globals.UpdateScore(true)
+		Globals.UpdateScore()
 		Reset()
 	for index in nextPieces.size():
 		NextSprite(nextPieces[index], index, 487.5, 7.5)
@@ -97,6 +97,7 @@ func SwapHold() -> void:
 			tetromino.currentType = _holdType
 			tetromino.UpdateFrame(_holdType, 0)
 		tetromino.UpdatePosition(3, 0)
+		tetromino.rotation = 0
 		ChangeSprite(hold, hold.type, 480, 10)
 		tetromino.hold = true
 
@@ -120,5 +121,5 @@ func NewBag(tempBag: Array[String]) -> Array[String]:
 func _notification(notification: int) -> void:
 	if notification == NOTIFICATION_WM_CLOSE_REQUEST:
 		print("Ending game")
-		Globals.UpdateScore(true)
+		Globals.UpdateScore()
 		get_tree().quit()

@@ -32,7 +32,7 @@ var backToBack : int
 const SAVE_PATH = "user://tetrisScore.save"
 
 func Initialize() -> void:
-	UpdateScore(true)
+	UpdateScore()
 	LoadScore()
 	lastLineCleared = 0
 	level = 0
@@ -50,20 +50,18 @@ func LineCleared(lines: int, isTSpin: bool, isAllCleared) -> void:
 	linesCleared += lines
 	level = linesCleared / 10
 	
-	backToBack = backToBack + 1 if lines >= 4 else 0
+	backToBack = backToBack + 1 if (lines >= 4 or isTSpin) else 0
 	
-	UpdateScore(false)
+	UpdateScore()
 
 
-func UpdateScore(gameEnded: bool) -> void:
-	if gameEnded:
-		if score > top:
-			top = score
-			SaveScore()
-		return
-	
+func UpdateScore() -> void:
 	var multiplier : int = 15 if backToBack > 1 else 10
 	score += lineClearedScore[lastLineCleared] * (level + 1) * multiplier / 10
+	
+	if score > top:
+			top = score
+			SaveScore()
 
 
 func SaveScore() -> void:
