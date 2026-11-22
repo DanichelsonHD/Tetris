@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://c4rsomq3qk2bn" path="res://board/board.tscn" id="1_80nbo"]
 [ext_resource type="Script" uid="uid://brlrqv3jxrgmd" path="res://game.gd" id="1_feb5d"]
 [ext_resource type="PackedScene" uid="uid://40dyxmb4xdve" path="res://tetrominoes/tetromino.tscn" id="2_e2o6t"]
-[ext_resource type="Texture2D" uid="uid://dk6bs85nucaw5" path="res://tetrominoes/sprites/brick.png" id="4_eow3j"]
+[ext_resource type="Texture2D" uid="uid://do5kg4706c2ew" path="res://tetrominoes/sprites/cardboard.png" id="4_eow3j"]
 [ext_resource type="PackedScene" uid="uid://c4omj4lnvgi22" path="res://tetrominoes/hold.tscn" id="4_fc0e3"]
 [ext_resource type="FontFile" uid="uid://cncroomsio72b" path="res://font/ByteBounce.ttf" id="5_7jktm"]
 [ext_resource type="FontFile" uid="uid://6nttpssy3yu2" path="res://font/BlockCraft.otf" id="6_ryrav"]
@@ -106,7 +106,7 @@ position = Vector2(480.00003, 241.00002)
 scale = Vector2(0.66, 0.66)
 
 [node name="Sprite2D3" type="Sprite2D" parent="." unique_id=343931994]
-z_index = 5
+z_index = 10
 position = Vector2(315, 105.5)
 scale = Vector2(7.7499995, 1.171875)
 texture = SubResource("GradientTexture2D_rdlth")
