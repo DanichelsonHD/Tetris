@@ -1,5 +1,7 @@
 class_name StateMachine extends Node2D
 
+@onready var stop : Stop = $Stop
+
 var states : Array[State]
 var prevState : State
 var currentState : State
@@ -47,3 +49,7 @@ func ChangeState(newState: State) -> void:
 	currentState = newState
 	
 	currentState.Enter()
+
+
+func Stop() -> void:
+	ChangeState(stop)

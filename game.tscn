@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://c4omj4lnvgi22" path="res://tetrominoes/hold.tscn" id="4_fc0e3"]
 [ext_resource type="FontFile" uid="uid://cncroomsio72b" path="res://font/ByteBounce.ttf" id="5_7jktm"]
 [ext_resource type="FontFile" uid="uid://6nttpssy3yu2" path="res://font/BlockCraft.otf" id="6_ryrav"]
+[ext_resource type="AudioStream" uid="uid://c7txgi7ktauhr" path="res://sounds/music_1980s.ogg" id="8_j5wjh"]
+[ext_resource type="Script" uid="uid://esl0bran171y" path="res://audioPlayer.gd" id="9_vef74"]
 
 [sub_resource type="Gradient" id="Gradient_feb5d"]
 colors = PackedColorArray(0, 0.105882354, 0, 1, 0.12686801, 0.012153827, 0.13416663, 1)
@@ -183,3 +185,13 @@ offset_bottom = 289.0
 label_settings = SubResource("LabelSettings_j5wjh")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=1787556656]
+stream = ExtResource("8_j5wjh")
+volume_db = -15.0
+autoplay = true
+script = ExtResource("9_vef74")
+
+[node name="AudioPlayer" type="AudioStreamPlayer" parent="." unique_id=1158970253]
+max_polyphony = 4
+script = ExtResource("9_vef74")

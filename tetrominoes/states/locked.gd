@@ -7,6 +7,7 @@ func Process(_delta: float) -> State:
 
 func Enter() -> void:
 	board.DrawTetromino(tetromino.currentType, tetromino.GetTetrominoesLocation())
+	tetromino.audioPlayer.PlayNow("LOCK", -10)
 	var isTSpin : bool = tetromino.currentType == "T" and stateMachine.lastMovement == "Rotate"
 	wasTSpin = tetromino.WasTSpin(isTSpin)
 

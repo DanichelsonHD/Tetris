@@ -21,6 +21,7 @@ func Physics(_delta: float) -> State:
 func HandleInput(_event: InputEvent) -> State:
 	DetectInput(_event)
 	if _event.is_action_pressed("hardDrop"): 
+		tetromino.audioPlayer.PlayNow("DROP", -25)
 		return locked
 	return null
 

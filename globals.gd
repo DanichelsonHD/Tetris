@@ -1,5 +1,6 @@
 extends Node
 
+const SAVE_PATH = "user://tetrisScore.save"
 const validRotations : Array[int] = [0, 1, 2, 3]
 const validTypes : Array[String] = ["T", "S", "Z", "J", "L", "I", "O"]
 const CELL : int = 30
@@ -28,8 +29,24 @@ var linesCleared : int
 var score : int
 var top : int
 var backToBack : int
-
-const SAVE_PATH = "user://tetrisScore.save"
+var newTop : bool
+var timer : float
+var bestTime : float
+var mode : String
+var scores : Dictionary = {
+	"MARATHON": {
+		"score": 0,
+		"level": 0,
+		"lines": 0,
+		"time": 0.0
+	},
+	"SPRINT": {
+		"score": 0,
+		"level": 0,
+		"lines": 0,
+		"time": 0.0
+	}
+}
 
 func Initialize() -> void:
 	UpdateScore()
@@ -39,6 +56,10 @@ func Initialize() -> void:
 	linesCleared = 0
 	score = 0
 	backToBack = 0
+	timer = 0
+	bestTime = scores[mode]["time"]
+	top = scores[mode]["score"]
+	newTop = false
 
 func LineCleared(lines: int, isTSpin: bool, isAllCleared) -> void:
 	if isAllCleared:
@@ -59,25 +80,77 @@ func UpdateScore() -> void:
 	var multiplier : int = 15 if backToBack > 1 else 10
 	score += lineClearedScore[lastLineCleared] * (level + 1) * multiplier / 10
 	
-	if score > top:
-			top = score
-			SaveScore()
+	if mode == "MARATHON":
+		if score <= top:
+			return
+	if mode == "SPRINT":
+		if timer <= bestTime:
+			return
+	
+	top = score
+	bestTime = timer
+	newTop = true
+	SaveScore()
 
 
 func SaveScore() -> void:
+	var currentMode : Dictionary = scores[mode]
+	
+	currentMode["score"] = top
+	currentMode["level"] = level
+	currentMode["lines"] = linesCleared
+	currentMode["time"] = bestTime
+	
 	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
+	
 	if file:
-		file.store_line(str(top))
+		for _mode in ["MARATHON", "SPRINT"]:
+			var data : Dictionary = scores[_mode]
+			
+			file.store_line(_mode)
+			file.store_line("Score: " + str(data["score"]))
+			file.store_line("Level: " + str(data["level"]))
+			file.store_line("Lines: " + str(data["lines"]))
+			file.store_line("Time: " + FormatTimer(data["time"]))
+			file.store_line("")
+		
 		file.close()
 
 
 func LoadScore() -> void:
 	if not FileAccess.file_exists(SAVE_PATH):
-		top = 0
 		SaveScore()
 		return
 	
 	var file = FileAccess.open(SAVE_PATH, FileAccess.READ)
+	
 	if file:
-		top = int(file.get_line())
+		for _mode in ["MARATHON", "SPRINT"]:
+			file.get_line() # nome do modo
+			
+			var data: Dictionary = scores[_mode]
+			
+			data["score"] = int(file.get_line().replace("Score: ", ""))
+			data["level"] = int(file.get_line().replace("Level: ", ""))
+			data["lines"] = int(file.get_line().replace("Lines: ", ""))
+			
+			var timeString: String = file.get_line().replace("Time: ", "")
+			data["time"] = FormatToTimer(timeString)
+			
+			file.get_line()
+		
 		file.close()
+	print(scores)
+
+
+func FormatTimer(_timer: float) -> String:
+	var minutes : int = int(_timer / 60)
+	var seconds : float = fmod(_timer, 60)
+	var timerStr : String = "%02d:%06.3f" % [minutes, seconds]
+	return timerStr
+
+
+func FormatToTimer(timerStr: String) -> float:
+	var floats : Array = timerStr.split_floats(":") as Array[float]
+	var _timer : float = floats[0] * 60 + floats[1]
+	return _timer

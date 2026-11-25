@@ -6,8 +6,11 @@
 [ext_resource type="Script" uid="uid://bpeu7ywfys64u" path="res://tetrominoes/states/falling.gd" id="5_iaufh"]
 [ext_resource type="Script" uid="uid://b6mdotos7ftl3" path="res://tetrominoes/states/locking.gd" id="6_y6pm0"]
 [ext_resource type="Script" uid="uid://crgkdhfuvy2nb" path="res://tetrominoes/states/locked.gd" id="7_kfs4g"]
+[ext_resource type="Script" uid="uid://car644qy204cb" path="res://tetrominoes/states/stop.gd" id="7_n16g7"]
 [ext_resource type="Script" uid="uid://g4t5co8ndw5p" path="res://tetrominoes/kickCases.gd" id="7_y6wq7"]
 [ext_resource type="PackedScene" uid="uid://c4omj4lnvgi22" path="res://tetrominoes/hold.tscn" id="9_n16g7"]
+[ext_resource type="Script" uid="uid://esl0bran171y" path="res://audioPlayer.gd" id="10_7gahr"]
+[ext_resource type="AudioStream" uid="uid://c4n162n6wm7s8" path="res://sounds/drop.ogg" id="10_allo3"]
 
 [node name="Tetromino" type="Node2D" unique_id=1387009445]
 script = ExtResource("1_64cjv")
@@ -25,7 +28,16 @@ script = ExtResource("6_y6pm0")
 [node name="Locked" type="Node2D" parent="StateMachine" unique_id=1833667393]
 script = ExtResource("7_kfs4g")
 
+[node name="Stop" type="Node2D" parent="StateMachine" unique_id=932734016]
+script = ExtResource("7_n16g7")
+
 [node name="KickCases" type="Node2D" parent="." unique_id=434879892]
 script = ExtResource("7_y6wq7")
 
 [node name="Sprite" parent="." unique_id=1670892946 instance=ExtResource("9_n16g7")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1615298548]
+stream = ExtResource("10_allo3")
+volume_db = -10.0
+max_polyphony = 4
+script = ExtResource("10_7gahr")

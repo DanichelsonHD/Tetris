@@ -8,11 +8,16 @@ var floorTouched : bool
 var softDropped : bool
 
 func Process(_delta: float) -> State:
-	if timer < CalculateG():
-		timer += _delta
-	elif not tetromino.IsOnFloor():
-		tetromino.UpdatePosition(tetromino.currentPosition.x, tetromino.currentPosition.y + 1)
-		timer = 0
+	var gravity : float = CalculateG()
+	
+	timer += _delta
+	while timer >= gravity and not tetromino.IsOnFloor():
+		tetromino.UpdatePosition(
+			tetromino.currentPosition.x,
+			tetromino.currentPosition.y + 1
+		)
+		timer -= gravity
+	
 	return null
 
 
@@ -40,6 +45,7 @@ func HandleInput(_event: InputEvent) -> State:
 	if _event.is_action_pressed("hardDrop"): 
 		var hardDrop = tetromino.HardDrop()
 		tetromino.UpdatePosition(hardDrop.x, hardDrop.y)
+		board.audioPlayer.PlayNow("DROP", -12.5)
 		return locked
 	
 	softDropped = true if Input.is_action_pressed("softDrop") else false

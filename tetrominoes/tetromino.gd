@@ -13,7 +13,7 @@ const fourCorners : Array[Vector2i] = [
 @export var currentRotation : int = 0
 @export var currentPosition : Vector2i
 @export var currentTexture : CompressedTexture2D
-
+@onready var audioPlayer = $AudioStreamPlayer
 @onready var stateMachine : StateMachine = $StateMachine
 @onready var kickCases = $KickCases
 @onready var sprite = $Sprite
@@ -39,6 +39,8 @@ func Initialize(_board: Board):
 
 func UpdateFrame(_type: String, _rotation: int) -> void:
 	sprite.UpdateFrame(_type, _rotation)
+	currentRotation = _rotation
+	currentType = _type
 
 
 func UpdatePosition(x: int, y: int) -> void:
@@ -132,6 +134,8 @@ func ApplyRotation(testRotation: int) -> void:
 		pieceMoved.emit("Rotate")
 		currentRotation = testRotation
 		currentPosition += kickCase
+		
+		audioPlayer.PlayNow("ROTATE", -30)
 		
 		UpdateFrame(currentType, currentRotation)
 		UpdatePosition(currentPosition.x, currentPosition.y)

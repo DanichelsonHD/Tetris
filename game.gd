@@ -6,6 +6,8 @@ class_name Game extends Node2D
 @onready var tetromino : Tetromino = $Board/Tetromino
 @onready var subtitle = $Subtitle
 @onready var lineCleared = $LineCleared
+@onready var musicPlayer = $MusicPlayer
+@onready var audioPlayer = $AudioPlayer
 
 @onready var nextPieces : Array[Hold] = [$Next_1, $Next_2, $Next_3, $Next_4, $Next_5, $Next_6]
 
@@ -14,6 +16,7 @@ var currentBag : Array[String]
 var nextBag : Array[String]
 
 func _ready():
+	Globals.mode = "MARATHON"
 	Globals.Initialize()
 	tetromino.Initialize(board)
 	BOARD.get_source(0).texture = tetromino.currentTexture
@@ -26,6 +29,8 @@ func _ready():
 	currentBag = NewBag(currentBag)
 	SortTetromino()
 	tetromino.pieceLocked.connect(SortTetromino)
+	
+	musicPlayer.PlayNow("1980", -12.5)
 
 
 func UpdateTexture(_hold: Hold) -> void:
@@ -36,15 +41,22 @@ func UpdateTexture(_hold: Hold) -> void:
 func _process(delta):
 	if board.GameEnded():
 		Globals.UpdateScore()
-		Reset()
+		tetromino.stateMachine.Stop()
+		if Globals.newTop:
+			musicPlayer.stop()
+			musicPlayer.PlayNow("TOP", -15)
+			Globals.newTop = false
+		#Reset()
+	else:
+		Globals.timer += delta
 	for index in nextPieces.size():
 		NextSprite(nextPieces[index], index, 487.5, 7.5)
 
 
 func _physics_process(delta):
-	HandleGhost()
 	UpdateTexts()
 	tetromino.UpdateTimers(delta)
+	HandleGhost()
 
 
 func UpdateTexts() -> void:
@@ -97,9 +109,11 @@ func SwapHold() -> void:
 			tetromino.currentType = _holdType
 			tetromino.UpdateFrame(_holdType, 0)
 		tetromino.UpdatePosition(3, 0)
-		tetromino.rotation = 0
+		tetromino.currentRotation = 0
 		ChangeSprite(hold, hold.type, 480, 10)
 		tetromino.hold = true
+		
+		audioPlayer.PlayNow("HOLD", -10)
 
 
 func SortTetromino() -> void:

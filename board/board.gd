@@ -10,6 +10,8 @@ const colors : Dictionary[String, Vector2i] = {
 	"O": Vector2i(3, 0)
 }
 
+@onready var audioPlayer = $AudioStreamPlayer
+
 func GameEnded() -> bool:
 	for index in range(3, 6):
 		if LocationOccupied(Vector2i(index, 0)):
@@ -46,7 +48,12 @@ func MoveLinesDown(clearedLines : Array[int], squareEmpty: int, isTSpin: bool) -
 				if LocationOccupied(currentSquare):
 					set_cell(currentSquare + Vector2i(0, 1), 0, get_cell_atlas_coords(currentSquare))
 					erase_cell(currentSquare)
-	
+	if isTSpin:
+		var tSound : String = Globals.lineClearedType[5] + str(clearedLines)
+		audioPlayer.PlayNow(tSound)
+	else:
+		audioPlayer.PlayNow(Globals.lineClearedType[clearedLines.size()], -5)
+		
 	var isAllCleared : bool = true if squareEmpty == 200 else false
 	Globals.LineCleared(clearedLines.size(), isTSpin, isAllCleared)
 
