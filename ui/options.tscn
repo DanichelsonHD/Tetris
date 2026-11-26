@@ -57,6 +57,24 @@ label_settings = ExtResource("4_63ajr")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Menu" type="Button" parent="Buttons" unique_id=89343972]
+offset_left = 90.0
+offset_top = 776.0
+offset_right = 195.0
+offset_bottom = 848.0
+icon = ExtResource("3_e4rtv")
+flat = true
+
+[node name="Text" type="Label" parent="Buttons/Menu" unique_id=883994791]
+layout_mode = 0
+offset_top = 12.0
+offset_right = 105.0
+offset_bottom = 57.0
+text = "MENU"
+label_settings = ExtResource("4_63ajr")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Previous" type="Button" parent="Buttons" unique_id=1499243201]
 offset_left = 90.0
 offset_top = 83.0
@@ -129,5 +147,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [connection signal="pressed" from="Buttons/Back" to="." method="OptionsBack"]
+[connection signal="pressed" from="Buttons/Menu" to="." method="ExitToMenu"]
 [connection signal="pressed" from="Buttons/Previous" to="." method="PreviousOption"]
 [connection signal="pressed" from="Buttons/Next" to="." method="NextOption"]

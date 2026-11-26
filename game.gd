@@ -155,6 +155,7 @@ func _notification(notification: int) -> void:
 func GameEnded() -> void:
 	tetromino.pieceLocked.disconnect(SortTetromino)
 	Globals.UpdateScore()
+	Globals.inGame = false
 	tetromino.stateMachine.Stop()
 	musicPlayer.stop()
 	if Globals.newTop:
@@ -164,6 +165,7 @@ func GameEnded() -> void:
 
 func GameBack() -> void:
 	Globals.UpdateScore()
+	Globals.inGame = false
 	Back.emit()
 
 

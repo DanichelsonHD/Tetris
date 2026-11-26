@@ -9,21 +9,36 @@ var game : Game = null
 func _ready() -> void:
 	options.Initialize()
 	options.Back.connect(ShowStart)
+	options.Pause.connect(PauseGame)
+	options.Menu.connect(GameBack)
 
 
 func ShowOptions() -> void:
+	if game != null:
+		game.hide()
 	start.hide()
 	options.show()
 
 
 func ShowStart() -> void:
+	if game != null:
+		game.hide()
 	options.hide()
 	start.show()
 
 
-func Quit() -> void:
-	get_tree().quit()
+func ShowGame() -> void:
+	if game != null:
+		game.show()
+	options.hide()
+	start.hide()
 
+
+func PauseGame(_paused: bool) -> void:
+	if _paused:
+		ShowOptions()
+		return
+	ShowGame()
 
 func Sprint() -> void:
 	if game != null:
@@ -57,3 +72,7 @@ func GameBack() -> void:
 func ResetGame(mode: String) -> void:
 	GameBack()
 	CreateGame(mode)
+
+
+func Quit() -> void:
+	get_tree().quit()

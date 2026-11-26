@@ -33,6 +33,7 @@ var backToBack : int
 var newTop : bool
 var timer : float
 var bestTime : float
+var inGame : bool
 var gameEnded : bool
 var mode : String
 var scores : Dictionary = {
@@ -49,6 +50,9 @@ var scores : Dictionary = {
 		"time": 0.0
 	}
 }
+
+var ARR : float = 0.033
+var DAS : float = 0.133
 
 var musicVolume : float
 var sfxVolume : float
@@ -69,6 +73,7 @@ func Initialize() -> void:
 	top = scores[mode]["score"]
 	newTop = false
 	gameEnded = false
+	inGame = true
 
 func LineCleared(lines: int, isTSpin: bool, isAllCleared) -> void:
 	if isAllCleared:

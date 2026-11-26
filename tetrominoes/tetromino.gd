@@ -1,7 +1,7 @@
 class_name Tetromino extends Node2D
 
-const ARR : float = 0.033
-const DAS : float = 0.133
+var ARR : float
+var DAS : float
 const fourCorners : Array[Vector2i] = [
 	Vector2i(0, 0),
 	Vector2i(2, 0),
@@ -32,7 +32,9 @@ func Initialize(_board: Board):
 	UpdateTexture()
 	board = _board
 	hold = false
+	DAS = Globals.DAS
 	DASTimer = 0
+	ARR = Globals.ARR
 	ARRTimer = 0
 	lockingResets = 0
 	kickCases.Initialize(self, _board)
