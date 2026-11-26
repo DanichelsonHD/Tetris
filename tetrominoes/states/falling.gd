@@ -45,7 +45,7 @@ func HandleInput(_event: InputEvent) -> State:
 	if _event.is_action_pressed("hardDrop"): 
 		var hardDrop = tetromino.HardDrop()
 		tetromino.UpdatePosition(hardDrop.x, hardDrop.y)
-		board.audioPlayer.PlayNow("DROP", -12.5)
+		board.audioPlayer.PlayNow("DROP", Globals.sfxVolume)
 		return locked
 	
 	softDropped = true if Input.is_action_pressed("softDrop") else false

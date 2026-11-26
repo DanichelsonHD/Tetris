@@ -26,12 +26,14 @@ const lineClearedScore : Dictionary[int, int] = {
 var lastLineCleared : int
 var level : int
 var linesCleared : int
+var sprintLines : int
 var score : int
 var top : int
 var backToBack : int
 var newTop : bool
 var timer : float
 var bestTime : float
+var gameEnded : bool
 var mode : String
 var scores : Dictionary = {
 	"MARATHON": {
@@ -48,6 +50,9 @@ var scores : Dictionary = {
 	}
 }
 
+var musicVolume : float
+var sfxVolume : float
+
 func Initialize() -> void:
 	UpdateScore()
 	LoadScore()
@@ -57,9 +62,13 @@ func Initialize() -> void:
 	score = 0
 	backToBack = 0
 	timer = 0
+	sprintLines = 40
+	musicVolume = -12
+	sfxVolume = -6
 	bestTime = scores[mode]["time"]
 	top = scores[mode]["score"]
 	newTop = false
+	gameEnded = false
 
 func LineCleared(lines: int, isTSpin: bool, isAllCleared) -> void:
 	if isAllCleared:
@@ -74,6 +83,10 @@ func LineCleared(lines: int, isTSpin: bool, isAllCleared) -> void:
 	backToBack = backToBack + 1 if (lines >= 4 or isTSpin) else 0
 	
 	UpdateScore()
+	
+	if mode == "SPRINT":
+		if linesCleared >= sprintLines:
+			gameEnded = true
 
 
 func UpdateScore() -> void:
@@ -84,7 +97,7 @@ func UpdateScore() -> void:
 		if score <= top:
 			return
 	if mode == "SPRINT":
-		if timer <= bestTime:
+		if timer >= bestTime or linesCleared < sprintLines:
 			return
 	
 	top = score
@@ -147,6 +160,13 @@ func FormatTimer(_timer: float) -> String:
 	var minutes : int = int(_timer / 60)
 	var seconds : float = fmod(_timer, 60)
 	var timerStr : String = "%02d:%06.3f" % [minutes, seconds]
+	return timerStr
+
+
+func FormatTimerGame(_timer: float) -> String:
+	var minutes : int = int(_timer / 60)
+	var seconds : float = fmod(_timer, 60)
+	var timerStr : String = "%02d:%02.0f" % [minutes, seconds]
 	return timerStr
 
 

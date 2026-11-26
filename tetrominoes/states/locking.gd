@@ -21,14 +21,16 @@ func Physics(_delta: float) -> State:
 func HandleInput(_event: InputEvent) -> State:
 	DetectInput(_event)
 	if _event.is_action_pressed("hardDrop"): 
-		tetromino.audioPlayer.PlayNow("DROP", -25)
+		tetromino.audioPlayer.PlayNow("DROP", Globals.sfxVolume)
 		return locked
 	return null
 
 
 func ReduceTimer(reason: String) -> void:
 	stateMachine.lastMovement = reason
-	timer -= timeModifier
+	if tetromino.lockingResets < 15:
+		timer -= timeModifier
+		tetromino.lockingResets += 1
 
 
 func Enter() -> void:

@@ -7,20 +7,21 @@
 [ext_resource type="PackedScene" uid="uid://c4omj4lnvgi22" path="res://tetrominoes/hold.tscn" id="4_fc0e3"]
 [ext_resource type="FontFile" uid="uid://cncroomsio72b" path="res://font/ByteBounce.ttf" id="5_7jktm"]
 [ext_resource type="FontFile" uid="uid://6nttpssy3yu2" path="res://font/BlockCraft.otf" id="6_ryrav"]
+[ext_resource type="Texture2D" uid="uid://vvecinfrr1id" path="res://ui/clear_texture.tres" id="8_hve3p"]
 [ext_resource type="AudioStream" uid="uid://c7txgi7ktauhr" path="res://sounds/music_1980s.ogg" id="8_j5wjh"]
 [ext_resource type="Script" uid="uid://esl0bran171y" path="res://audioPlayer.gd" id="9_vef74"]
 
-[sub_resource type="Gradient" id="Gradient_feb5d"]
+[sub_resource type="Gradient" id="Gradient_vef74"]
 colors = PackedColorArray(0, 0.105882354, 0, 1, 0.12686801, 0.012153827, 0.13416663, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_rdlth"]
-gradient = SubResource("Gradient_feb5d")
+gradient = SubResource("Gradient_vef74")
 
-[sub_resource type="Gradient" id="Gradient_fc0e3"]
+[sub_resource type="Gradient" id="Gradient_hve3p"]
 colors = PackedColorArray(0, 0, 0, 0.78431374, 0, 0, 0, 0.78039217)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_rdlth"]
-gradient = SubResource("Gradient_fc0e3")
+gradient = SubResource("Gradient_hve3p")
 
 [sub_resource type="LabelSettings" id="LabelSettings_rdlth"]
 font = ExtResource("5_7jktm")
@@ -121,13 +122,13 @@ texture = SubResource("GradientTexture2D_rdlth")
 
 [node name="Sprite2D5" type="Sprite2D" parent="." unique_id=2131051182]
 z_index = 5
-position = Vector2(510, 567)
-scale = Vector2(1.65625, 6.6875005)
+position = Vector2(510, 582)
+scale = Vector2(1.65625, 7.1562505)
 texture = SubResource("GradientTexture2D_rdlth")
 
 [node name="Sprite2D6" type="Sprite2D" parent="." unique_id=2898222]
 z_index = 5
-position = Vector2(510, 792.74994)
+position = Vector2(510, 822.74994)
 scale = Vector2(0.93749934, 0.36718667)
 texture = SubResource("GradientTexture2D_rdlth")
 
@@ -186,6 +187,27 @@ label_settings = SubResource("LabelSettings_j5wjh")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Back" type="Button" parent="." unique_id=1563370097]
+offset_left = 451.0
+offset_top = 751.0
+offset_right = 570.0
+offset_bottom = 841.0
+focus_mode = 1
+icon = ExtResource("8_hve3p")
+flat = true
+
+[node name="Text" type="Label" parent="Back" unique_id=1241757203]
+z_index = 11
+layout_mode = 0
+offset_left = 14.0
+offset_top = 30.0
+offset_right = 104.0
+offset_bottom = 60.0
+text = "BACK"
+label_settings = SubResource("LabelSettings_ryrav")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=1787556656]
 stream = ExtResource("8_j5wjh")
 volume_db = -15.0
@@ -195,3 +217,5 @@ script = ExtResource("9_vef74")
 [node name="AudioPlayer" type="AudioStreamPlayer" parent="." unique_id=1158970253]
 max_polyphony = 4
 script = ExtResource("9_vef74")
+
+[connection signal="pressed" from="Back" to="." method="GameBack"]

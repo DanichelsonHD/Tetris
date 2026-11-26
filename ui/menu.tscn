@@ -1,0 +1,202 @@
+[gd_scene format=4 uid="uid://c2brr00r31a7l"]
+
+[ext_resource type="Script" uid="uid://c5u16h1xgje4s" path="res://ui/menu.gd" id="1_jbsda"]
+[ext_resource type="TileSet" uid="uid://cgq83ky4undj" path="res://board/board.tres" id="2_0bcp5"]
+[ext_resource type="PackedScene" uid="uid://cipw8lkkuhq3m" path="res://ui/options.tscn" id="2_jbsda"]
+[ext_resource type="Texture2D" uid="uid://vvecinfrr1id" path="res://ui/clear_texture.tres" id="3_l8jcj"]
+[ext_resource type="LabelSettings" uid="uid://chsum7mwbl6aq" path="res://ui/button_subtitle.tres" id="4_cp6tm"]
+[ext_resource type="LabelSettings" uid="uid://drww2r5g6p1mu" path="res://ui/button_title.tres" id="6_cop0s"]
+
+[sub_resource type="Gradient" id="Gradient_feb5d"]
+colors = PackedColorArray(0, 0.23407021, 9.62615e-08, 1, 0.237679, 0.038244225, 0.24941346, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_vsb4k"]
+gradient = SubResource("Gradient_feb5d")
+
+[sub_resource type="Gradient" id="Gradient_fc0e3"]
+colors = PackedColorArray(0, 0, 0, 0.78431374, 0, 0, 0, 0.78039217)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vsb4k"]
+gradient = SubResource("Gradient_fc0e3")
+
+[node name="Menu" type="Control" unique_id=489329388]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_jbsda")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=89111792]
+z_index = -2
+position = Vector2(299, 475.5)
+scale = Vector2(2.6906252, 1005)
+texture = SubResource("GradientTexture1D_vsb4k")
+
+[node name="Options" parent="." unique_id=1683327463 instance=ExtResource("2_jbsda")]
+visible = false
+layout_mode = 0
+
+[node name="Start" type="Control" parent="." unique_id=1102984916]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Start" unique_id=200067152]
+z_index = -1
+position = Vector2(315.5, 160.5)
+scale = Vector2(7.0468745, 2.828125)
+texture = SubResource("GradientTexture2D_vsb4k")
+
+[node name="TileMapTitle" type="TileMapLayer" parent="Start" unique_id=210596559]
+z_index = 2
+texture_filter = 1
+position = Vector2(11.25, 15)
+scale = Vector2(0.75, 0.75)
+tile_map_data = PackedByteArray("AAAGAAQAAAAAAAAAAAAHAAQAAAAAAAAAAAASAAcAAAAAAAEAAAASAAgAAAAAAAEAAAATAAQAAAAFAAEAAAATAAYAAAAFAAEAAAATAAgAAAAFAAEAAAAUAAQAAAAFAAEAAAAUAAYAAAAFAAEAAAAUAAgAAAAFAAEAAAAVAAQAAAAFAAEAAAAVAAYAAAAFAAEAAAAVAAgAAAAFAAEAAAAFAAQAAAAAAAAAAAAGAAUAAAAAAAAAAAAGAAYAAAAAAAAAAAAGAAcAAAAAAAAAAAAGAAgAAAAAAAAAAAASAAQAAAAAAAEAAAASAAYAAAAAAAEAAAATAAUAAAAFAAEAAAAVAAcAAAAFAAEAAAADAAIAAAAEAAIAAAADAAMAAAAEAAIAAAADAAQAAAAEAAIAAAADAAUAAAAEAAIAAAADAAYAAAAEAAIAAAADAAcAAAAEAAIAAAADAAgAAAAEAAIAAAADAAkAAAAEAAIAAAADAAoAAAAEAAIAAAAEAAoAAAAEAAIAAAAFAAoAAAAEAAIAAAAGAAoAAAAEAAIAAAAHAAoAAAAEAAIAAAAIAAoAAAAEAAIAAAAJAAoAAAAEAAIAAAAKAAoAAAAEAAIAAAALAAoAAAAEAAIAAAAMAAoAAAAEAAIAAAANAAoAAAAEAAIAAAAOAAoAAAAEAAIAAAAPAAoAAAAEAAIAAAAQAAoAAAAEAAIAAAARAAoAAAAEAAIAAAASAAoAAAAEAAIAAAATAAoAAAAEAAIAAAAUAAoAAAAEAAIAAAAVAAoAAAAEAAIAAAAWAAoAAAAEAAIAAAAXAAoAAAAEAAIAAAAXAAIAAAAEAAIAAAAXAAMAAAAEAAIAAAAXAAQAAAAEAAIAAAAXAAUAAAAEAAIAAAAXAAYAAAAEAAIAAAAXAAcAAAAEAAIAAAAXAAgAAAAEAAIAAAAXAAkAAAAEAAIAAAAEAAIAAAAEAAIAAAAFAAIAAAAEAAIAAAAGAAIAAAAEAAIAAAAHAAIAAAAEAAIAAAAIAAIAAAAEAAIAAAAJAAIAAAAEAAIAAAAKAAIAAAAEAAIAAAALAAIAAAAEAAIAAAAMAAIAAAAEAAIAAAANAAIAAAAEAAIAAAAOAAIAAAAEAAIAAAAPAAIAAAAEAAIAAAAQAAIAAAAEAAIAAAARAAIAAAAEAAIAAAASAAIAAAAEAAIAAAATAAIAAAAEAAIAAAAUAAIAAAAEAAIAAAAVAAIAAAAEAAIAAAAWAAIAAAAEAAIAAAAMAAQAAAADAAAAAAAMAAUAAAADAAAAAAAMAAYAAAADAAAAAAAMAAcAAAADAAAAAAAMAAgAAAADAAAAAAANAAQAAAADAAAAAAANAAYAAAADAAAAAAANAAgAAAADAAAAAAAOAAQAAAADAAAAAAAOAAYAAAADAAAAAAAOAAgAAAADAAAAAAAPAAQAAAAGAAAAAAAQAAQAAAAGAAAAAAAQAAUAAAAGAAAAAAAQAAYAAAAGAAAAAAAQAAcAAAAGAAAAAAAQAAgAAAAGAAAAAAARAAQAAAAGAAAAAAAIAAQAAAACAAAAAAAIAAUAAAACAAAAAAAIAAYAAAACAAAAAAAIAAcAAAACAAAAAAAIAAgAAAACAAAAAAAJAAQAAAACAAAAAAAJAAYAAAACAAAAAAAKAAQAAAACAAAAAAAKAAYAAAACAAAAAAALAAUAAAACAAAAAAALAAcAAAACAAAAAAALAAgAAAACAAAAAAA=")
+tile_set = ExtResource("2_0bcp5")
+
+[node name="Buttons" type="Node2D" parent="Start" unique_id=1563309240]
+position = Vector2(0, 53)
+
+[node name="TileMapButton" type="TileMapLayer" parent="Start/Buttons" unique_id=1643608976]
+z_index = 1
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+tile_map_data = PackedByteArray("AAAXABQAAAAEAAIAAAAXABUAAAAEAAIAAAAXABYAAAAEAAIAAAAXABcAAAAEAAIAAAAXABgAAAAEAAIAAAAXABkAAAAEAAIAAAAXABoAAAAEAAIAAAAYABoAAAAEAAIAAAAZABoAAAAEAAIAAAAaABoAAAAEAAIAAAAbABoAAAAEAAIAAAAcABoAAAAEAAIAAAAdABoAAAAEAAIAAAAeABoAAAAEAAIAAAAfABoAAAAEAAIAAAAgABoAAAAEAAIAAAAhABoAAAAEAAIAAAAiABoAAAAEAAIAAAAjABoAAAAEAAIAAAAkABoAAAAEAAIAAAAkABkAAAAEAAIAAAAkABgAAAAEAAIAAAAkABcAAAAEAAIAAAAkABYAAAAEAAIAAAAkABUAAAAEAAIAAAAkABQAAAAEAAIAAAAjABQAAAAEAAIAAAAiABQAAAAEAAIAAAAhABQAAAAEAAIAAAAgABQAAAAEAAIAAAAfABQAAAAEAAIAAAAeABQAAAAEAAIAAAAdABQAAAAEAAIAAAAcABQAAAAEAAIAAAAbABQAAAAEAAIAAAAaABQAAAAEAAIAAAAZABQAAAAEAAIAAAAYABQAAAAEAAIAAAASABQAAAAEAAIAAAARABQAAAAEAAIAAAAQABQAAAAEAAIAAAAPABQAAAAEAAIAAAAOABQAAAAEAAIAAAANABQAAAAEAAIAAAAMABQAAAAEAAIAAAALABQAAAAEAAIAAAAKABQAAAAEAAIAAAAJABQAAAAEAAIAAAAIABQAAAAEAAIAAAAHABQAAAAEAAIAAAAGABQAAAAEAAIAAAAFABQAAAAEAAIAAAAFABUAAAAEAAIAAAAFABYAAAAEAAIAAAAFABcAAAAEAAIAAAAFABgAAAAEAAIAAAAFABkAAAAEAAIAAAAFABoAAAAEAAIAAAAGABoAAAAEAAIAAAAHABoAAAAEAAIAAAAIABoAAAAEAAIAAAAJABoAAAAEAAIAAAAKABoAAAAEAAIAAAALABoAAAAEAAIAAAAMABoAAAAEAAIAAAANABoAAAAEAAIAAAAOABoAAAAEAAIAAAAPABoAAAAEAAIAAAAQABoAAAAEAAIAAAARABoAAAAEAAIAAAASABkAAAAEAAIAAAASABoAAAAEAAIAAAASABgAAAAEAAIAAAASABcAAAAEAAIAAAASABYAAAAEAAIAAAASABUAAAAEAAIAAAAOACMAAAAEAAIAAAAbACMAAAAEAAIAAAAbACkAAAAEAAIAAAAaACkAAAAEAAIAAAAZACkAAAAEAAIAAAAYACkAAAAEAAIAAAAXACkAAAAEAAIAAAAWACkAAAAEAAIAAAAVACkAAAAEAAIAAAAUACkAAAAEAAIAAAATACkAAAAEAAIAAAASACkAAAAEAAIAAAARACkAAAAEAAIAAAAQACkAAAAEAAIAAAAPACkAAAAEAAIAAAAOACkAAAAEAAIAAAAOACgAAAAEAAIAAAAOACcAAAAEAAIAAAAOACYAAAAEAAIAAAAOACUAAAAEAAIAAAAOACQAAAAEAAIAAAAbACQAAAAEAAIAAAAbACUAAAAEAAIAAAAbACYAAAAEAAIAAAAbACcAAAAEAAIAAAAbACgAAAAEAAIAAAAaACMAAAAEAAIAAAAZACMAAAAEAAIAAAAYACMAAAAEAAIAAAAXACMAAAAEAAIAAAAWACMAAAAEAAIAAAAVACMAAAAEAAIAAAAUACMAAAAEAAIAAAATACMAAAAEAAIAAAASACMAAAAEAAIAAAARACMAAAAEAAIAAAAQACMAAAAEAAIAAAAPACMAAAAEAAIAAAAcADQAAAAEAAIAAAAdADQAAAAEAAIAAAAeADQAAAAEAAIAAAAfADQAAAAEAAIAAAAgADQAAAAEAAIAAAAhADQAAAAEAAIAAAAiADQAAAAEAAIAAAAjADQAAAAEAAIAAAAkADMAAAAEAAIAAAAkADIAAAAEAAIAAAAkADEAAAAEAAIAAAAkADAAAAAEAAIAAAAjADAAAAAEAAIAAAAiADAAAAAEAAIAAAAhADAAAAAEAAIAAAAgADAAAAAEAAIAAAAfADAAAAAEAAIAAAAeADAAAAAEAAIAAAAdADAAAAAEAAIAAAAcADAAAAAEAAIAAAAcADMAAAAEAAIAAAAcADIAAAAEAAIAAAAcADEAAAAEAAIAAAAkADQAAAAEAAIAAAAFACwAAAAFAAEAAAAFAC0AAAAFAAEAAAAFAC4AAAAFAAEAAAAFADAAAAACAAEAAAAFADEAAAACAAEAAAAFADIAAAACAAEAAAAFADMAAAADAAAAAAAFADQAAAADAAAAAAAGAC0AAAAFAAEAAAAGADAAAAACAAEAAAAGADMAAAADAAAAAAAGADQAAAADAAAAAAAHAC4AAAACAAAAAAAIAC4AAAACAAAAAAAIAC8AAAACAAAAAAAIADAAAAACAAAAAAAIADEAAAAFAAEAAAAIADMAAAAAAAAAAAAIADQAAAAAAAAAAAAJADAAAAAFAAEAAAAJADEAAAAFAAEAAAAJADIAAAAAAAAAAAAJADMAAAAAAAAAAAAJADQAAAACAAEAAAAKADAAAAAEAAIAAAAKADEAAAAFAAEAAAAKADIAAAACAAEAAAAKADMAAAACAAEAAAAKADQAAAACAAEAAAALADAAAAAEAAIAAAALADEAAAAAAAEAAAALADIAAAAAAAEAAAALADMAAAAAAAEAAAALADQAAAAAAAEAAAAMADAAAAAEAAIAAAAMADEAAAAEAAIAAAAMADIAAAACAAAAAAAMADMAAAACAAAAAAAMADQAAAACAAAAAAANADAAAAAEAAIAAAANADEAAAAEAAIAAAANADIAAAAGAAAAAAANADMAAAAGAAAAAAANADQAAAACAAAAAAAOADAAAAAEAAIAAAAOADEAAAAEAAIAAAAOADIAAAAEAAIAAAAOADMAAAAGAAAAAAAOADQAAAAGAAAAAAA=")
+tile_set = ExtResource("2_0bcp5")
+
+[node name="Sprint" type="Button" parent="Start/Buttons" unique_id=1167198238]
+offset_left = 75.0
+offset_top = 300.0
+offset_right = 284.0
+offset_bottom = 405.0
+icon = ExtResource("3_l8jcj")
+flat = true
+
+[node name="Title" type="Label" parent="Start/Buttons/Sprint" unique_id=1024816179]
+modulate = Color(0.9843137, 0.36078432, 0.36078432, 1)
+layout_mode = 0
+offset_left = 15.0
+offset_top = 13.0
+offset_right = 199.0
+offset_bottom = 92.0
+text = "SPRINT"
+label_settings = ExtResource("6_cop0s")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Subtitle" type="Label" parent="Start/Buttons/Sprint" unique_id=2058845246]
+modulate = Color(0.9843137, 0.36078432, 0.36078432, 1)
+layout_mode = 0
+offset_left = 1.0
+offset_top = 90.0
+offset_right = 210.0
+offset_bottom = 195.0
+text = "Clear 40 lines as 
+quick as possible"
+label_settings = ExtResource("4_cp6tm")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="Start/Buttons/Sprint" unique_id=832833975]
+z_index = -1
+position = Vector2(105.00003, 53.00001)
+scale = Vector2(3.0312493, 1.4062504)
+texture = SubResource("GradientTexture2D_vsb4k")
+
+[node name="Marathon" type="Button" parent="Start/Buttons" unique_id=1261056040]
+offset_left = 345.0
+offset_top = 300.0
+offset_right = 555.0
+offset_bottom = 405.0
+icon = ExtResource("3_l8jcj")
+flat = true
+
+[node name="Title" type="Label" parent="Start/Buttons/Marathon" unique_id=1524495073]
+modulate = Color(0.7607843, 0.40784314, 0.9372549, 1)
+layout_mode = 0
+offset_left = 15.0
+offset_top = 13.0
+offset_right = 199.0
+offset_bottom = 92.0
+text = "MARATHON"
+label_settings = ExtResource("6_cop0s")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Subtitle" type="Label" parent="Start/Buttons/Marathon" unique_id=201468415]
+modulate = Color(0.7607843, 0.40784314, 0.9372549, 1)
+layout_mode = 0
+offset_top = 90.0
+offset_right = 211.0
+offset_bottom = 195.0
+text = "Clear as many lines
+as possible"
+label_settings = ExtResource("4_cp6tm")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="Start/Buttons/Marathon" unique_id=1719015316]
+z_index = -1
+position = Vector2(105.00003, 53.00001)
+scale = Vector2(3.0312493, 1.4062504)
+texture = SubResource("GradientTexture2D_vsb4k")
+
+[node name="Options" type="Button" parent="Start/Buttons" unique_id=1390470595]
+offset_left = 211.0
+offset_top = 525.0
+offset_right = 420.0
+offset_bottom = 630.0
+icon = ExtResource("3_l8jcj")
+flat = true
+
+[node name="Title" type="Label" parent="Start/Buttons/Options" unique_id=340917107]
+modulate = Color(1, 1, 0.16862746, 1)
+layout_mode = 0
+offset_left = 15.0
+offset_top = 13.0
+offset_right = 199.0
+offset_bottom = 92.0
+text = "OPTIONS"
+label_settings = ExtResource("6_cop0s")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="Start/Buttons/Options" unique_id=1771334972]
+z_index = -1
+position = Vector2(105.00003, 53.00001)
+scale = Vector2(3.0312493, 1.4062504)
+texture = SubResource("GradientTexture2D_vsb4k")
+
+[node name="Quit" type="Button" parent="Start/Buttons" unique_id=1131992315]
+offset_left = 420.0
+offset_top = 720.0
+offset_right = 555.0
+offset_bottom = 795.0
+icon = ExtResource("3_l8jcj")
+flat = true
+
+[node name="Title" type="Label" parent="Start/Buttons/Quit" unique_id=538095137]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 13.0
+offset_right = 124.0
+offset_bottom = 62.0
+text = "QUIT"
+label_settings = ExtResource("6_cop0s")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="Start/Buttons/Quit" unique_id=407502525]
+z_index = -1
+position = Vector2(67.500015, 37.49999)
+scale = Vector2(1.859374, 0.92187476)
+texture = SubResource("GradientTexture2D_vsb4k")
+
+[node name="TileMapLayer2" type="TileMapLayer" parent="." unique_id=940468778]
+z_index = 1
+texture_filter = 1
+tile_set = ExtResource("2_0bcp5")
+
+[connection signal="pressed" from="Start/Buttons/Sprint" to="." method="Sprint"]
+[connection signal="pressed" from="Start/Buttons/Marathon" to="." method="Marathon"]
+[connection signal="pressed" from="Start/Buttons/Options" to="." method="ShowOptions"]
+[connection signal="pressed" from="Start/Buttons/Quit" to="." method="Quit"]

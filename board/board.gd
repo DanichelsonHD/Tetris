@@ -16,7 +16,7 @@ func GameEnded() -> bool:
 	for index in range(3, 6):
 		if LocationOccupied(Vector2i(index, 0)):
 			return true
-	return false
+	return false if Globals.gameEnded == false else true
 
 
 func VerifyLines(isTSpin: bool) -> void:
@@ -49,10 +49,10 @@ func MoveLinesDown(clearedLines : Array[int], squareEmpty: int, isTSpin: bool) -
 					set_cell(currentSquare + Vector2i(0, 1), 0, get_cell_atlas_coords(currentSquare))
 					erase_cell(currentSquare)
 	if isTSpin:
-		var tSound : String = Globals.lineClearedType[5] + str(clearedLines)
-		audioPlayer.PlayNow(tSound)
+		var tSound : String = Globals.lineClearedType[5] + str(clearedLines.size())
+		audioPlayer.PlayNow(tSound, Globals.sfxVolume + (2 * clearedLines.size()))
 	else:
-		audioPlayer.PlayNow(Globals.lineClearedType[clearedLines.size()], -5)
+		audioPlayer.PlayNow(Globals.lineClearedType[clearedLines.size()], Globals.sfxVolume + (2 * clearedLines.size()))
 		
 	var isAllCleared : bool = true if squareEmpty == 200 else false
 	Globals.LineCleared(clearedLines.size(), isTSpin, isAllCleared)

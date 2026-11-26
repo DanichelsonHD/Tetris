@@ -26,6 +26,7 @@ var hold : bool
 var DASTimer : float
 var ARRTimer : float
 var movementDirection : String
+var lockingResets : float
 
 func Initialize(_board: Board):
 	UpdateTexture()
@@ -33,6 +34,7 @@ func Initialize(_board: Board):
 	hold = false
 	DASTimer = 0
 	ARRTimer = 0
+	lockingResets = 0
 	kickCases.Initialize(self, _board)
 	stateMachine.Initialize(self, _board)
 
@@ -135,7 +137,7 @@ func ApplyRotation(testRotation: int) -> void:
 		currentRotation = testRotation
 		currentPosition += kickCase
 		
-		audioPlayer.PlayNow("ROTATE", -30)
+		audioPlayer.PlayNow("ROTATE", Globals.sfxVolume - 3)
 		
 		UpdateFrame(currentType, currentRotation)
 		UpdatePosition(currentPosition.x, currentPosition.y)

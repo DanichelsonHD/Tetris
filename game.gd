@@ -4,6 +4,7 @@ class_name Game extends Node2D
 @onready var hold : Hold = $Hold
 @onready var ghost = $Board/Ghost
 @onready var tetromino : Tetromino = $Board/Tetromino
+@onready var title = $Title
 @onready var subtitle = $Subtitle
 @onready var lineCleared = $LineCleared
 @onready var musicPlayer = $MusicPlayer
@@ -12,11 +13,19 @@ class_name Game extends Node2D
 @onready var nextPieces : Array[Hold] = [$Next_1, $Next_2, $Next_3, $Next_4, $Next_5, $Next_6]
 
 const BOARD = preload("uid://cgq83ky4undj")
+
 var currentBag : Array[String]
 var nextBag : Array[String]
 
+signal Back
+signal Reset
+
 func _ready():
-	Globals.mode = "MARATHON"
+	Initialize("MARATHON")
+
+
+func Initialize(_mode: String) -> void:
+	Globals.mode = _mode
 	Globals.Initialize()
 	tetromino.Initialize(board)
 	BOARD.get_source(0).texture = tetromino.currentTexture
@@ -30,7 +39,7 @@ func _ready():
 	SortTetromino()
 	tetromino.pieceLocked.connect(SortTetromino)
 	
-	musicPlayer.PlayNow("1980", -12.5)
+	musicPlayer.PlayNow("1980", -Globals.musicVolume)
 
 
 func UpdateTexture(_hold: Hold) -> void:
@@ -39,14 +48,9 @@ func UpdateTexture(_hold: Hold) -> void:
 
 
 func _process(delta):
-	if board.GameEnded():
-		Globals.UpdateScore()
-		tetromino.stateMachine.Stop()
-		if Globals.newTop:
-			musicPlayer.stop()
-			musicPlayer.PlayNow("TOP", -15)
-			Globals.newTop = false
-		#Reset()
+	Globals.gameEnded = board.GameEnded()
+	if Globals.gameEnded:
+		GameEnded()
 	else:
 		Globals.timer += delta
 	for index in nextPieces.size():
@@ -60,7 +64,15 @@ func _physics_process(delta):
 
 
 func UpdateTexts() -> void:
-	subtitle.text = FormatInt(Globals.level, 2) + "   " + FormatInt(Globals.linesCleared, 3) + "  " + FormatInt(Globals.score, 6) + "  " + FormatInt(Globals.top, 6)
+	subtitle.text = FormatInt(Globals.level, 2) + "   " + FormatInt(Globals.linesCleared, 3) + "  "
+	if Globals.mode == "SPRINT":
+		title.text = "LVL   LINES    TIME         TOP"
+		subtitle.text += "  " + Globals.FormatTimerGame(Globals.timer) + "   " + Globals.FormatTimerGame(Globals.bestTime)
+		
+	elif Globals.mode == "MARATHON":
+		title.text = "LVL   LINES   SCORE        TOP"
+		subtitle.text += FormatInt(Globals.score, 6) + "  " + FormatInt(Globals.top, 6)
+	
 	lineCleared.text = Globals.lineClearedType[Globals.lastLineCleared]
 
 
@@ -87,12 +99,9 @@ func ChangeSprite(_hold: Hold, _type: String, _position: float, _margin: float) 
 
 func _unhandled_input(event):
 	if event.is_action_pressed("holdPiece"): SwapHold()
-	if event.is_action_pressed("resetKey"): Reset()
-
-
-func Reset() -> void:
-	Globals.Initialize()
-	get_tree().reload_current_scene()
+	if event.is_action_pressed("resetKey"): ResetGame()
+	if event.is_action_pressed("menuKey"): GameBack()
+	if event.is_action_pressed("returnKey"): PauseGame()
 
 
 func SwapHold() -> void:
@@ -113,7 +122,7 @@ func SwapHold() -> void:
 		ChangeSprite(hold, hold.type, 480, 10)
 		tetromino.hold = true
 		
-		audioPlayer.PlayNow("HOLD", -10)
+		audioPlayer.PlayNow("HOLD", Globals.sfxVolume)
 
 
 func SortTetromino() -> void:
@@ -132,8 +141,32 @@ func NewBag(tempBag: Array[String]) -> Array[String]:
 	return tempBag
 
 
+func PauseGame() -> void:
+	pass
+
+
 func _notification(notification: int) -> void:
 	if notification == NOTIFICATION_WM_CLOSE_REQUEST:
 		print("Ending game")
 		Globals.UpdateScore()
 		get_tree().quit()
+
+
+func GameEnded() -> void:
+	tetromino.pieceLocked.disconnect(SortTetromino)
+	Globals.UpdateScore()
+	tetromino.stateMachine.Stop()
+	musicPlayer.stop()
+	if Globals.newTop:
+		musicPlayer.PlayNow("TOP", Globals.musicVolume)
+		Globals.newTop = false
+
+
+func GameBack() -> void:
+	Globals.UpdateScore()
+	Back.emit()
+
+
+func ResetGame() -> void:
+	Globals.UpdateScore()
+	Reset.emit(Globals.mode)
