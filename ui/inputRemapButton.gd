@@ -12,10 +12,10 @@ const CONTROLLER_LABELS: Dictionary = {
 	JoyButton.JOY_BUTTON_RIGHT_SHOULDER: "RB",
 	JoyButton.JOY_BUTTON_LEFT_STICK: "L3",
 	JoyButton.JOY_BUTTON_RIGHT_STICK: "R3",
-	JoyButton.JOY_BUTTON_DPAD_UP: "↑",
-	JoyButton.JOY_BUTTON_DPAD_DOWN: "↓",
-	JoyButton.JOY_BUTTON_DPAD_LEFT: "←",
-	JoyButton.JOY_BUTTON_DPAD_RIGHT: "→",
+	JoyButton.JOY_BUTTON_DPAD_UP: "G-UP",
+	JoyButton.JOY_BUTTON_DPAD_DOWN: "G-DWON",
+	JoyButton.JOY_BUTTON_DPAD_LEFT: "G-LEFT",
+	JoyButton.JOY_BUTTON_DPAD_RIGHT: "G-RIGHT",
 	JoyButton.JOY_BUTTON_START: "Start",
 	JoyButton.JOY_BUTTON_GUIDE: "Select"
 }
