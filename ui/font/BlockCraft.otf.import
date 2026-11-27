@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://6nttpssy3yu2"
-path="res://.godot/imported/BlockCraft.otf-3d8c301cfb0faf14370bdc070312c02b.fontdata"
+path="res://.godot/imported/BlockCraft.otf-e15b7eaa8abb16e704ff809ef15c111a.fontdata"
 
 [deps]
 
-source_file="res://font/BlockCraft.otf"
-dest_files=["res://.godot/imported/BlockCraft.otf-3d8c301cfb0faf14370bdc070312c02b.fontdata"]
+source_file="res://ui/font/BlockCraft.otf"
+dest_files=["res://.godot/imported/BlockCraft.otf-e15b7eaa8abb16e704ff809ef15c111a.fontdata"]
 
 [params]
 

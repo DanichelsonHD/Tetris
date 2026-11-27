@@ -57,6 +57,8 @@ var DAS : float = 0.133
 var musicVolume : float
 var sfxVolume : float
 
+var texture : CompressedTexture2D
+
 func Initialize() -> void:
 	UpdateScore()
 	LoadScore()
@@ -66,7 +68,7 @@ func Initialize() -> void:
 	score = 0
 	backToBack = 0
 	timer = 0
-	sprintLines = 40
+	sprintLines = 10
 	musicVolume = -12
 	sfxVolume = -6
 	bestTime = scores[mode]["time"]

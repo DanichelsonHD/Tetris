@@ -12,8 +12,6 @@ class_name Game extends Node2D
 
 @onready var nextPieces : Array[Hold] = [$Next_1, $Next_2, $Next_3, $Next_4, $Next_5, $Next_6]
 
-const BOARD = preload("uid://cgq83ky4undj")
-
 var currentBag : Array[String]
 var nextBag : Array[String]
 
@@ -28,12 +26,6 @@ func Initialize(_mode: String) -> void:
 	Globals.mode = _mode
 	Globals.Initialize()
 	tetromino.Initialize(board)
-	BOARD.get_source(0).texture = tetromino.currentTexture
-	
-	UpdateTexture(hold)
-	UpdateTexture(ghost)
-	for nextPiece in nextPieces:
-		UpdateTexture(nextPiece)
 	
 	currentBag = NewBag(currentBag)
 	SortTetromino()
@@ -42,13 +34,23 @@ func Initialize(_mode: String) -> void:
 	musicPlayer.PlayNow("1980", -Globals.musicVolume)
 
 
-func UpdateTexture(_hold: Hold) -> void:
-	_hold.currentTexture = tetromino.currentTexture
-	_hold.UpdateTexture()
+func UpdateTexture() -> void:
+	UpdateTetrominoTexture(tetromino)
+	UpdateTetrominoTexture(hold)
+	UpdateTetrominoTexture(ghost)
+	for nextPiece in nextPieces:
+		UpdateTetrominoTexture(nextPiece)
+
+
+func UpdateTetrominoTexture(_tetromino) -> void:
+	_tetromino.currentTexture = Globals.texture
+	_tetromino.UpdateTexture()
 
 
 func _process(delta):
 	Globals.gameEnded = board.GameEnded()
+	musicPlayer.Volume(Globals.musicVolume)
+	audioPlayer.Volume(Globals.sfxVolume)
 	if Globals.gameEnded:
 		GameEnded()
 	else:
@@ -101,7 +103,6 @@ func _unhandled_input(event):
 	if event.is_action_pressed("holdPiece"): SwapHold()
 	if event.is_action_pressed("resetKey"): ResetGame()
 	if event.is_action_pressed("menuKey"): GameBack()
-	if event.is_action_pressed("returnKey"): PauseGame()
 
 
 func SwapHold() -> void:
@@ -139,10 +140,6 @@ func NewBag(tempBag: Array[String]) -> Array[String]:
 	tempBag = Globals.validTypes.duplicate()
 	tempBag.shuffle()
 	return tempBag
-
-
-func PauseGame() -> void:
-	pass
 
 
 func _notification(notification: int) -> void:

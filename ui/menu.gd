@@ -3,6 +3,8 @@ class_name Menu extends Control
 @onready var options : Control = $Options
 @onready var start : Control = $Start
 
+const BOARD = preload("uid://cgq83ky4undj")
+
 var GAME = load("res://game.tscn")
 var game : Game = null
 
@@ -11,6 +13,7 @@ func _ready() -> void:
 	options.Back.connect(ShowStart)
 	options.Pause.connect(PauseGame)
 	options.Menu.connect(GameBack)
+	options.ChangeTexture.connect(ChangeTexture)
 
 
 func ShowOptions() -> void:
@@ -23,6 +26,7 @@ func ShowOptions() -> void:
 func ShowStart() -> void:
 	if game != null:
 		game.hide()
+		game.queue_free()
 	options.hide()
 	start.show()
 
@@ -33,6 +37,11 @@ func ShowGame() -> void:
 	options.hide()
 	start.hide()
 
+
+func ChangeTexture() -> void:
+	if game != null:
+		game.UpdateTexture()
+	BOARD.get_source(0).texture = Globals.texture
 
 func PauseGame(_paused: bool) -> void:
 	if _paused:
@@ -58,6 +67,7 @@ func CreateGame(mode: String):
 	game = GAME.instantiate()
 	add_child(game)
 	game.Initialize(mode)
+	ChangeTexture()
 	game.Back.connect(GameBack)
 	game.Reset.connect(ResetGame)
 

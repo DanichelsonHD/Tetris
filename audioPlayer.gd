@@ -30,3 +30,6 @@ func PlayNow(name: String, _volume: float) -> void:
 	stream = names[name]
 	volume_db = _volume
 	play()
+
+func Volume(_volume: float) -> void:
+	volume_db = _volume

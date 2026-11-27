@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://cncroomsio72b"
-path="res://.godot/imported/ByteBounce.ttf-6c758a39d33a738dc0684204734f379c.fontdata"
+path="res://.godot/imported/ByteBounce.ttf-9c3db6d390fd1d806a94b8816526dc32.fontdata"
 
 [deps]
 
-source_file="res://font/ByteBounce.ttf"
-dest_files=["res://.godot/imported/ByteBounce.ttf-6c758a39d33a738dc0684204734f379c.fontdata"]
+source_file="res://ui/font/ByteBounce.ttf"
+dest_files=["res://.godot/imported/ByteBounce.ttf-9c3db6d390fd1d806a94b8816526dc32.fontdata"]
 
 [params]
 
