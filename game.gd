@@ -18,8 +18,8 @@ var nextBag : Array[String]
 signal Back
 signal Reset
 
-func _ready():
-	Initialize("MARATHON")
+#func _ready():
+	#Initialize("MARATHON")
 
 
 func Initialize(_mode: String) -> void:

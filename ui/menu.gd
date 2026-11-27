@@ -27,6 +27,7 @@ func ShowStart() -> void:
 	if game != null:
 		game.hide()
 		game.queue_free()
+		game = null
 	options.hide()
 	start.show()
 
@@ -43,11 +44,13 @@ func ChangeTexture() -> void:
 		game.UpdateTexture()
 	BOARD.get_source(0).texture = Globals.texture
 
+
 func PauseGame(_paused: bool) -> void:
 	if _paused:
 		ShowOptions()
 		return
 	ShowGame()
+
 
 func Sprint() -> void:
 	if game != null:
@@ -76,6 +79,7 @@ func GameBack() -> void:
 	if game != null:
 		game.Back.disconnect(GameBack)
 		game.queue_free()
+		game = null
 	ShowStart()
 
 

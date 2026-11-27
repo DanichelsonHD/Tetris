@@ -51,7 +51,7 @@ func MoveLinesDown(clearedLines : Array[int], squareEmpty: int, isTSpin: bool) -
 	if isTSpin:
 		var tSound : String = Globals.lineClearedType[5] + str(clearedLines.size())
 		audioPlayer.PlayNow(tSound, Globals.sfxVolume + (2 * clearedLines.size()))
-	else:
+	elif Globals.lineClearedType[clearedLines.size()] != "":
 		audioPlayer.PlayNow(Globals.lineClearedType[clearedLines.size()], Globals.sfxVolume + (2 * clearedLines.size()))
 		
 	var isAllCleared : bool = true if squareEmpty == 200 else false

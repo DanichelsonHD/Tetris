@@ -70,8 +70,8 @@ func UpdateVolume(_unused: bool) -> void:
 
 
 func UpdateHandling(_unused: bool) -> void:
-	Globals.DAS = DAS.value / 100
-	Globals.ARR = ARR.value / 100
+	Globals.DAS = DAS.value / 1000
+	Globals.ARR = ARR.value / 1000
 
 
 func PreviousTexture() -> void:
