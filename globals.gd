@@ -68,7 +68,7 @@ func Initialize() -> void:
 	score = 0
 	backToBack = 0
 	timer = 0
-	sprintLines = 10
+	sprintLines = 40
 	musicVolume = -12
 	sfxVolume = -6
 	bestTime = scores[mode]["time"]
