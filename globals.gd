@@ -104,7 +104,7 @@ func UpdateScore() -> void:
 		if score <= top:
 			return
 	if mode == "SPRINT":
-		if (timer >= bestTime and timer != 0) or linesCleared < sprintLines:
+		if (timer >= bestTime and bestTime != 0) or linesCleared < sprintLines:
 			return
 	
 	top = score

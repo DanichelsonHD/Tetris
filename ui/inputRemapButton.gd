@@ -25,7 +25,7 @@ func _ready():
 	_toggled(false)
 
 
-func _unhandled_input(event: InputEvent):
+func _gui_input(event: InputEvent):
 	if not InputMap.has_action(action) or not button_pressed:
 		return
 	
@@ -42,18 +42,12 @@ func _unhandled_input(event: InputEvent):
 		get_viewport().set_input_as_handled()
 
 
-func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
-		button_pressed = false
-		release_focus()
-
-
 func _toggled(toggled_on: bool) -> void:
 	if not action or not InputMap.has_action(action):
 		return
 	
 	if toggled_on:
-		text = "Press any Input"
+		text = "Awaiting Input"
 		return
 	
 	if actionEventIndex >= InputMap.action_get_events(action).size():

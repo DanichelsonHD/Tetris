@@ -20,7 +20,7 @@ gradient = SubResource("Gradient_fc0e3")
 
 [sub_resource type="LabelSettings" id="LabelSettings_e4rtv"]
 font = ExtResource("7_e4rtv")
-font_size = 40
+font_size = 36
 
 [sub_resource type="LabelSettings" id="LabelSettings_63ajr"]
 font = ExtResource("7_e4rtv")
@@ -30,8 +30,8 @@ font_size = 54
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_04syq")
-metadata/_edit_vertical_guides_ = [180.0, 450.0, 135.0, 495.0, 157.0, 473.0, 82.0, 315.0]
-metadata/_edit_horizontal_guides_ = [278.0, 323.0, 803.0, 758.0, 398.0, 503.0, 608.0, 806.0]
+metadata/_edit_vertical_guides_ = [180.0, 450.0, 135.0, 495.0, 157.0, 473.0, 315.0, 300.0, 330.0]
+metadata/_edit_horizontal_guides_ = [278.0, 323.0, 803.0, 758.0, 398.0, 503.0, 593.0, 713.0, 533.0, 653.0]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=218150412]
 z_index = -1
@@ -49,7 +49,7 @@ tile_set = ExtResource("2_bnx2y")
 
 [node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1644160329]
 z_index = -1
-position = Vector2(315, 547)
+position = Vector2(315, 544.99994)
 scale = Vector2(7.28125, 9.390625)
 texture = SubResource("GradientTexture2D_vsb4k")
 
@@ -198,55 +198,6 @@ text = "SOUND EFFECTS"
 label_settings = SubResource("LabelSettings_e4rtv")
 vertical_alignment = 1
 
-[node name="Keybinds" type="Control" parent="." unique_id=167527947]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Title" type="Label" parent="Keybinds" unique_id=1180463372]
-modulate = Color(0.96862745, 0.69803923, 0.3647059, 1)
-layout_mode = 0
-offset_left = 195.0
-offset_top = 68.0
-offset_right = 437.0
-offset_bottom = 158.0
-text = "KEYBINDS"
-label_settings = ExtResource("5_syd3e")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Handling" type="Label" parent="Keybinds" unique_id=511119633]
-layout_mode = 0
-offset_left = 180.0
-offset_top = 278.0
-offset_right = 450.0
-offset_bottom = 323.0
-text = "HANDLING"
-label_settings = ExtResource("5_syd3e")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Remapping" type="Label" parent="Keybinds" unique_id=788074914]
-layout_mode = 0
-offset_left = 180.0
-offset_top = 458.0
-offset_right = 450.0
-offset_bottom = 503.0
-text = "REMAPPING"
-label_settings = ExtResource("5_syd3e")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="InputRemapButton" type="Button" parent="Keybinds/Remapping" unique_id=733045092]
-layout_mode = 0
-offset_left = 230.0
-offset_top = 45.0
-offset_right = 270.0
-offset_bottom = 80.0
-script = ExtResource("10_gdwlo")
-action = "moveLeft"
-metadata/_custom_type_script = "uid://6e6sh2x0sxhy"
-
 [node name="Video" type="Control" parent="." unique_id=1133517818]
 visible = false
 anchors_preset = 0
@@ -254,7 +205,8 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="TileMapLayer" type="TileMapLayer" parent="Video" unique_id=1432239141]
-tile_map_data = PackedByteArray("AAAFAA0AAAACAAEAAAAFABUAAAADAAAAAAAGABEAAAAGAAAAAAAGABUAAAADAAAAAAAKABAAAAAAAAEAAAAKABEAAAAAAAEAAAAKABIAAAAAAAEAAAAOABEAAAAAAAAAAAAOABUAAAAFAAEAAAAPAA0AAAACAAAAAAAFAAwAAAACAAEAAAAFABEAAAAGAAAAAAAFABQAAAADAAAAAAAGAA0AAAACAAEAAAAGABAAAAAGAAAAAAAGABQAAAADAAAAAAAHAA0AAAACAAEAAAAHABAAAAAGAAAAAAAKAA8AAAAAAAEAAAANAA0AAAACAAAAAAANABAAAAAAAAAAAAANABUAAAAFAAEAAAAOAA0AAAACAAAAAAAOABAAAAAAAAAAAAAOABQAAAAFAAEAAAAPAAwAAAACAAAAAAAPABEAAAAAAAAAAAAPABUAAAAFAAEAAAA=")
+position = Vector2(0, 8)
+tile_map_data = PackedByteArray("AAAFAA0AAAACAAEAAAAFABUAAAADAAAAAAAGABEAAAAGAAAAAAAGABUAAAADAAAAAAAKABAAAAAAAAEAAAAKABEAAAAAAAEAAAAKABIAAAAAAAEAAAAOABEAAAAAAAAAAAAOABUAAAAFAAEAAAAPAA0AAAACAAAAAAAFAA4AAAACAAEAAAAFABIAAAAGAAAAAAAFABYAAAADAAAAAAAGAA4AAAACAAEAAAAGABIAAAAGAAAAAAAGABYAAAADAAAAAAAHAA4AAAACAAEAAAAHABEAAAAGAAAAAAAKABMAAAAAAAEAAAANAA4AAAACAAAAAAANABEAAAAAAAAAAAANABYAAAAFAAEAAAAOAA4AAAACAAAAAAAOABIAAAAAAAAAAAAOABYAAAAFAAEAAAAPAA4AAAACAAAAAAAPABIAAAAAAAAAAAAPABYAAAAFAAEAAAA=")
 tile_set = ExtResource("2_bnx2y")
 
 [node name="Title" type="Label" parent="Video" unique_id=230387091]
@@ -326,6 +278,503 @@ text = "FULLSCREEN"
 flat = true
 alignment = 1
 
+[node name="Keyboard" type="Control" parent="." unique_id=167527947]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Title" type="Label" parent="Keyboard" unique_id=1180463372]
+modulate = Color(0.96862745, 0.69803923, 0.3647059, 1)
+layout_mode = 0
+offset_left = 195.0
+offset_top = 68.0
+offset_right = 437.0
+offset_bottom = 158.0
+text = "KEYBOARD"
+label_settings = ExtResource("5_syd3e")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Remapping" type="Label" parent="Keyboard" unique_id=788074914]
+layout_mode = 0
+offset_left = 180.0
+offset_top = 278.0
+offset_right = 450.0
+offset_bottom = 323.0
+text = "REMAPPING"
+label_settings = ExtResource("5_syd3e")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MoveLeft" type="Button" parent="Keyboard/Remapping" unique_id=733045092]
+layout_mode = 0
+offset_top = 120.0
+offset_right = 120.0
+offset_bottom = 150.0
+theme_override_fonts/font = ExtResource("7_e4rtv")
+theme_override_font_sizes/font_size = 21
+text = "Awaiting Input"
+flat = true
+alignment = 2
+script = ExtResource("10_gdwlo")
+action = "moveLeft"
+metadata/_custom_type_script = "uid://6e6sh2x0sxhy"
+
+[node name="Sprite2D" type="Sprite2D" parent="Keyboard/Remapping/MoveLeft" unique_id=43182757]
+position = Vector2(-30.000011, 15)
+scale = Vector2(0.33, 0.33)
+texture = ExtResource("6_bnx2y")
+hframes = 5
+vframes = 5
+
+[node name="MoveRight" type="Button" parent="Keyboard/Remapping" unique_id=2047636605]
+layout_mode = 0
+offset_top = 180.0
+offset_right = 120.0
+offset_bottom = 210.0
+theme_override_fonts/font = ExtResource("7_e4rtv")
+theme_override_font_sizes/font_size = 21
+text = "Awaiting Input"
+flat = true
+alignment = 2
+script = ExtResource("10_gdwlo")
+action = "moveRight"
+metadata/_custom_type_script = "uid://6e6sh2x0sxhy"
+
+[node name="Sprite2D" type="Sprite2D" parent="Keyboard/Remapping/MoveRight" unique_id=1551213046]
+position = Vector2(-30.000011, 15)
+scale = Vector2(0.33, 0.33)
+texture = ExtResource("6_bnx2y")
+hframes = 5
+vframes = 5
+frame = 1
+
+[node name="RotateLeft" type="Button" parent="Keyboard/Remapping" unique_id=780884558]
+layout_mode = 0
+offset_top = 240.0
+offset_right = 120.0
+offset_bottom = 270.0
+theme_override_fonts/font = ExtResource("7_e4rtv")
+theme_override_font_sizes/font_size = 21
+text = "Awaiting Input"
+flat = true
+alignment = 2
+script = ExtResource("10_gdwlo")
+action = "rotateLeft"
+metadata/_custom_type_script = "uid://6e6sh2x0sxhy"
+
+[node name="Sprite2D" type="Sprite2D" parent="Keyboard/Remapping/RotateLeft" unique_id=1352238600]
+position = Vector2(-30.000011, 15)
+scale = Vector2(0.33, 0.33)
+texture = ExtResource("6_bnx2y")
+hframes = 5
+vframes = 5
+frame = 3
+
+[node name="RotateRight" type="Button" parent="Keyboard/Remapping" unique_id=568092917]
+layout_mode = 0
+offset_top = 300.0
+offset_right = 120.0
+offset_bottom = 330.0
+theme_override_fonts/font = ExtResource("7_e4rtv")
+theme_override_font_sizes/font_size = 21
+text = "Awaiting Input"
+flat = true
+alignment = 2
+script = ExtResource("10_gdwlo")
+action = "rotateRight"
+metadata/_custom_type_script = "uid://6e6sh2x0sxhy"
+
+[node name="Sprite2D" type="Sprite2D" parent="Keyboard/Remapping/RotateRight" unique_id=714735638]
+position = Vector2(-30.000011, 15)
+scale = Vector2(0.33, 0.33)
+texture = ExtResource("6_bnx2y")
+hframes = 5
+vframes = 5
+frame = 2
+
+[node name="SoftDrop" type="Button" parent="Keyboard/Remapping" unique_id=243214578]
+layout_mode = 0
+offset_left = 195.0
+offset_top = 120.0
+offset_right = 315.0
+offset_bottom = 150.0
+theme_override_fonts/font = ExtResource("7_e4rtv")
+theme_override_font_sizes/font_size = 21
+text = "Awaiting Input"
+flat = true
+alignment = 2
+script = ExtResource("10_gdwlo")
+action = "softDrop"
+metadata/_custom_type_script = "uid://6e6sh2x0sxhy"
+
+[node name="Sprite2D" type="Sprite2D" parent="Keyboard/Remapping/SoftDrop" unique_id=245604717]
+position = Vector2(-30.000011, 15)
+scale = Vector2(0.33, 0.33)
+texture = ExtResource("6_bnx2y")
+hframes = 5
+vframes = 5
+frame = 6
+
+[node name="HardDrop" type="Button" parent="Keyboard/Remapping" unique_id=1299478543]
+layout_mode = 0
+offset_left = 195.0
+offset_top = 180.0
+offset_right = 315.0
+offset_bottom = 210.0
+theme_override_fonts/font = ExtResource("7_e4rtv")
+theme_override_font_sizes/font_size = 21
+text = "Awaiting Input"
+flat = true
+alignment = 2
+script = ExtResource("10_gdwlo")
+action = "hardDrop"
+metadata/_custom_type_script = "uid://6e6sh2x0sxhy"
+
+[node name="Sprite2D" type="Sprite2D" parent="Keyboard/Remapping/HardDrop" unique_id=1998713936]
+position = Vector2(-30.000011, 15)
+scale = Vector2(0.33, 0.33)
+texture = ExtResource("6_bnx2y")
+hframes = 5
+vframes = 5
+frame = 5
+
+[node name="HoldPiece" type="Button" parent="Keyboard/Remapping" unique_id=254657843]
+layout_mode = 0
+offset_left = 195.0
+offset_top = 240.0
+offset_right = 315.0
+offset_bottom = 270.0
+theme_override_fonts/font = ExtResource("7_e4rtv")
+theme_override_font_sizes/font_size = 21
+text = "Awaiting Input"
+flat = true
+alignment = 2
+script = ExtResource("10_gdwlo")
+action = "holdPiece"
+metadata/_custom_type_script = "uid://6e6sh2x0sxhy"
+
+[node name="Sprite2D" type="Sprite2D" parent="Keyboard/Remapping/HoldPiece" unique_id=691089728]
+position = Vector2(-30.000011, 15)
+scale = Vector2(0.33, 0.33)
+texture = ExtResource("6_bnx2y")
+hframes = 5
+vframes = 5
+frame = 7
+
+[node name="Rotate180" type="Button" parent="Keyboard/Remapping" unique_id=1182113874]
+layout_mode = 0
+offset_left = 195.0
+offset_top = 300.0
+offset_right = 315.0
+offset_bottom = 330.0
+theme_override_fonts/font = ExtResource("7_e4rtv")
+theme_override_font_sizes/font_size = 21
+text = "Awaiting Input"
+flat = true
+alignment = 2
+script = ExtResource("10_gdwlo")
+action = "rotate180"
+metadata/_custom_type_script = "uid://6e6sh2x0sxhy"
+
+[node name="Sprite2D" type="Sprite2D" parent="Keyboard/Remapping/Rotate180" unique_id=442597274]
+position = Vector2(-30.000011, 15)
+scale = Vector2(0.33, 0.33)
+texture = ExtResource("6_bnx2y")
+hframes = 5
+vframes = 5
+frame = 4
+
+[node name="Gamepad" type="Control" parent="." unique_id=2129534171]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Title" type="Label" parent="Gamepad" unique_id=856357343]
+modulate = Color(0.7607843, 0.40784314, 0.9372549, 1)
+layout_mode = 0
+offset_left = 195.0
+offset_top = 68.0
+offset_right = 437.0
+offset_bottom = 158.0
+text = "GAMEPAD"
+label_settings = ExtResource("5_syd3e")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Remapping" type="Label" parent="Gamepad" unique_id=232955651]
+layout_mode = 0
+offset_left = 180.0
+offset_top = 278.0
+offset_right = 450.0
+offset_bottom = 323.0
+text = "REMAPPING"
+label_settings = ExtResource("5_syd3e")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MoveLeft" type="Button" parent="Gamepad/Remapping" unique_id=1603764008]
+layout_mode = 0
+offset_top = 120.0
+offset_right = 120.0
+offset_bottom = 150.0
+theme_override_fonts/font = ExtResource("7_e4rtv")
+theme_override_font_sizes/font_size = 21
+text = "Awaiting Input"
+flat = true
+alignment = 2
+script = ExtResource("10_gdwlo")
+action = "moveLeft"
+actionEventIndex = 1
+metadata/_custom_type_script = "uid://6e6sh2x0sxhy"
+
+[node name="Sprite2D" type="Sprite2D" parent="Gamepad/Remapping/MoveLeft" unique_id=294752429]
+position = Vector2(-30.000011, 15)
+scale = Vector2(0.33, 0.33)
+texture = ExtResource("6_bnx2y")
+hframes = 5
+vframes = 5
+
+[node name="MoveRight" type="Button" parent="Gamepad/Remapping" unique_id=6144530]
+layout_mode = 0
+offset_top = 180.0
+offset_right = 120.0
+offset_bottom = 210.0
+theme_override_fonts/font = ExtResource("7_e4rtv")
+theme_override_font_sizes/font_size = 21
+text = "Awaiting Input"
+flat = true
+alignment = 2
+script = ExtResource("10_gdwlo")
+action = "moveRight"
+actionEventIndex = 1
+metadata/_custom_type_script = "uid://6e6sh2x0sxhy"
+
+[node name="Sprite2D" type="Sprite2D" parent="Gamepad/Remapping/MoveRight" unique_id=835000261]
+position = Vector2(-30.000011, 15)
+scale = Vector2(0.33, 0.33)
+texture = ExtResource("6_bnx2y")
+hframes = 5
+vframes = 5
+frame = 1
+
+[node name="RotateLeft" type="Button" parent="Gamepad/Remapping" unique_id=1577085360]
+layout_mode = 0
+offset_top = 240.0
+offset_right = 120.0
+offset_bottom = 270.0
+theme_override_fonts/font = ExtResource("7_e4rtv")
+theme_override_font_sizes/font_size = 21
+text = "Awaiting Input"
+flat = true
+alignment = 2
+script = ExtResource("10_gdwlo")
+action = "rotateLeft"
+actionEventIndex = 1
+metadata/_custom_type_script = "uid://6e6sh2x0sxhy"
+
+[node name="Sprite2D" type="Sprite2D" parent="Gamepad/Remapping/RotateLeft" unique_id=1702750560]
+position = Vector2(-30.000011, 15)
+scale = Vector2(0.33, 0.33)
+texture = ExtResource("6_bnx2y")
+hframes = 5
+vframes = 5
+frame = 3
+
+[node name="RotateRight" type="Button" parent="Gamepad/Remapping" unique_id=1197077519]
+layout_mode = 0
+offset_top = 300.0
+offset_right = 120.0
+offset_bottom = 330.0
+theme_override_fonts/font = ExtResource("7_e4rtv")
+theme_override_font_sizes/font_size = 21
+text = "Awaiting Input"
+flat = true
+alignment = 2
+script = ExtResource("10_gdwlo")
+action = "rotateRight"
+actionEventIndex = 1
+metadata/_custom_type_script = "uid://6e6sh2x0sxhy"
+
+[node name="Sprite2D" type="Sprite2D" parent="Gamepad/Remapping/RotateRight" unique_id=169860242]
+position = Vector2(-30.000011, 15)
+scale = Vector2(0.33, 0.33)
+texture = ExtResource("6_bnx2y")
+hframes = 5
+vframes = 5
+frame = 2
+
+[node name="SoftDrop" type="Button" parent="Gamepad/Remapping" unique_id=346024176]
+layout_mode = 0
+offset_left = 195.0
+offset_top = 120.0
+offset_right = 315.0
+offset_bottom = 150.0
+theme_override_fonts/font = ExtResource("7_e4rtv")
+theme_override_font_sizes/font_size = 21
+text = "Awaiting Input"
+flat = true
+alignment = 2
+script = ExtResource("10_gdwlo")
+action = "softDrop"
+actionEventIndex = 1
+metadata/_custom_type_script = "uid://6e6sh2x0sxhy"
+
+[node name="Sprite2D" type="Sprite2D" parent="Gamepad/Remapping/SoftDrop" unique_id=2100502577]
+position = Vector2(-30.000011, 15)
+scale = Vector2(0.33, 0.33)
+texture = ExtResource("6_bnx2y")
+hframes = 5
+vframes = 5
+frame = 6
+
+[node name="HardDrop" type="Button" parent="Gamepad/Remapping" unique_id=2102598641]
+layout_mode = 0
+offset_left = 195.0
+offset_top = 180.0
+offset_right = 315.0
+offset_bottom = 210.0
+theme_override_fonts/font = ExtResource("7_e4rtv")
+theme_override_font_sizes/font_size = 21
+text = "Awaiting Input"
+flat = true
+alignment = 2
+script = ExtResource("10_gdwlo")
+action = "hardDrop"
+actionEventIndex = 1
+metadata/_custom_type_script = "uid://6e6sh2x0sxhy"
+
+[node name="Sprite2D" type="Sprite2D" parent="Gamepad/Remapping/HardDrop" unique_id=229843012]
+position = Vector2(-30.000011, 15)
+scale = Vector2(0.33, 0.33)
+texture = ExtResource("6_bnx2y")
+hframes = 5
+vframes = 5
+frame = 5
+
+[node name="HoldPiece" type="Button" parent="Gamepad/Remapping" unique_id=2093247805]
+layout_mode = 0
+offset_left = 195.0
+offset_top = 240.0
+offset_right = 315.0
+offset_bottom = 270.0
+theme_override_fonts/font = ExtResource("7_e4rtv")
+theme_override_font_sizes/font_size = 21
+text = "Awaiting Input"
+flat = true
+alignment = 2
+script = ExtResource("10_gdwlo")
+action = "holdPiece"
+actionEventIndex = 1
+metadata/_custom_type_script = "uid://6e6sh2x0sxhy"
+
+[node name="Sprite2D" type="Sprite2D" parent="Gamepad/Remapping/HoldPiece" unique_id=227025045]
+position = Vector2(-30.000011, 15)
+scale = Vector2(0.33, 0.33)
+texture = ExtResource("6_bnx2y")
+hframes = 5
+vframes = 5
+frame = 7
+
+[node name="Rotate180" type="Button" parent="Gamepad/Remapping" unique_id=845308361]
+layout_mode = 0
+offset_left = 195.0
+offset_top = 300.0
+offset_right = 315.0
+offset_bottom = 330.0
+theme_override_fonts/font = ExtResource("7_e4rtv")
+theme_override_font_sizes/font_size = 21
+text = "Awaiting Input"
+flat = true
+alignment = 2
+script = ExtResource("10_gdwlo")
+action = "rotate180"
+actionEventIndex = 1
+metadata/_custom_type_script = "uid://6e6sh2x0sxhy"
+
+[node name="Sprite2D" type="Sprite2D" parent="Gamepad/Remapping/Rotate180" unique_id=364550681]
+position = Vector2(-30.000011, 15)
+scale = Vector2(0.33, 0.33)
+texture = ExtResource("6_bnx2y")
+hframes = 5
+vframes = 5
+frame = 4
+
+[node name="Handling" type="Control" parent="." unique_id=651337189]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Title" type="Label" parent="Handling" unique_id=1130804775]
+modulate = Color(0.43137255, 0.972549, 0.972549, 1)
+layout_mode = 0
+offset_left = 195.0
+offset_top = 68.0
+offset_right = 437.0
+offset_bottom = 158.0
+text = "HANDLING"
+label_settings = ExtResource("5_syd3e")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Subtitle" type="Label" parent="Handling" unique_id=1517910956]
+layout_mode = 0
+offset_left = 180.0
+offset_top = 278.0
+offset_right = 450.0
+offset_bottom = 323.0
+text = "AUTO-SHIFT"
+label_settings = ExtResource("5_syd3e")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DAS" type="HSlider" parent="Handling" unique_id=1697672168]
+layout_mode = 0
+offset_left = 136.0
+offset_top = 420.0
+offset_right = 494.0
+offset_bottom = 480.0
+theme_override_icons/grabber = ExtResource("6_syd3e")
+theme_override_icons/grabber_highlight = ExtResource("7_ekocp")
+theme_override_styles/slider = ExtResource("8_ekocp")
+max_value = 333.0
+step = 16.5
+value = 132.0
+
+[node name="Title" type="Label" parent="Handling/DAS" unique_id=1399555969]
+layout_mode = 0
+offset_top = -38.0
+offset_right = 358.0
+offset_bottom = 7.0
+text = "Delayed Auto-Shift - DAS"
+label_settings = SubResource("LabelSettings_e4rtv")
+vertical_alignment = 1
+
+[node name="ARR" type="HSlider" parent="Handling" unique_id=1119248125]
+layout_mode = 0
+offset_left = 136.0
+offset_top = 525.0
+offset_right = 494.0
+offset_bottom = 585.0
+theme_override_icons/grabber = ExtResource("6_syd3e")
+theme_override_icons/grabber_highlight = ExtResource("7_ekocp")
+theme_override_styles/slider = ExtResource("8_ekocp")
+max_value = 250.0
+step = 16.5
+value = 33.0
+
+[node name="Title" type="Label" parent="Handling/ARR" unique_id=1799924004]
+layout_mode = 0
+offset_top = -37.0
+offset_right = 358.0
+offset_bottom = 8.0
+text = "Auto Repeat Rate - ARR"
+label_settings = SubResource("LabelSettings_e4rtv")
+vertical_alignment = 1
+
 [connection signal="pressed" from="Buttons/Back" to="." method="OptionsBack"]
 [connection signal="pressed" from="Buttons/Menu" to="." method="ExitToMenu"]
 [connection signal="pressed" from="Buttons/Previous" to="." method="PreviousOption"]
@@ -336,3 +785,5 @@ alignment = 1
 [connection signal="pressed" from="Video/PreviousTexture" to="." method="PreviousTexture"]
 [connection signal="pressed" from="Video/NextTexture" to="." method="NextTexture"]
 [connection signal="toggled" from="Video/Fullscreen" to="." method="Fullscreen"]
+[connection signal="drag_ended" from="Handling/DAS" to="." method="UpdateHandling"]
+[connection signal="drag_ended" from="Handling/ARR" to="." method="UpdateHandling"]

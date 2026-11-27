@@ -5,13 +5,17 @@ class_name Options extends Control
 @onready var volumeMusic = $Audio/Music
 @onready var volumeSfx = $Audio/SFX
 
-@onready var keybinds : Control = $Keybinds
+@onready var keyboard : Control = $Keyboard
+@onready var gamepad : Control = $Gamepad
+@onready var handling : Control = $Handling
+@onready var DAS = $Handling/DAS
+@onready var ARR = $Handling/ARR
 
 @onready var video : Control = $Video
 @onready var texture = $Video/Texture
 
 @onready var currentOption : Control = video
-@onready var options : Array[Control] = [ audio, keybinds, video ]
+@onready var options : Array[Control] = [ audio, keyboard, gamepad, handling, video ]
 @onready var menu : Button = $Buttons/Menu
 
 var _paused : bool
@@ -63,6 +67,11 @@ func UpdateTexture() -> void:
 func UpdateVolume(_unused: bool) -> void:
 	Globals.musicVolume = volumeMusic.value + volumeGeneral.value
 	Globals.sfxVolume = volumeSfx.value + volumeGeneral.value
+
+
+func UpdateHandling(_unused: bool) -> void:
+	Globals.DAS = DAS.value / 100
+	Globals.ARR = ARR.value / 100
 
 
 func PreviousTexture() -> void:
